@@ -9,8 +9,11 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@chakra-ui/core": "^1.0.0-rc.5",
+    "@chakra-ui/icons": "^1.0.0-rc.5",
     "next": "9.5.3",
     "react": "16.13.1",
+    "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "16.13.1",
     "react-verification-input": "^0.1.5"
   },
