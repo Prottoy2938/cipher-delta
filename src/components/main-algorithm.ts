@@ -37,7 +37,7 @@ const substituteContent = (userContent: string, skip = 1): string => {
         //if user wants to skip backward
         else {
           substitutedContent = reverseEngAlphabets.concat(
-            engAlphabets[charIndex + skip].toUpperCase()
+            engAlphabets[charIndex + Math.abs(skip)].toUpperCase()
           );
         }
       }
@@ -52,7 +52,7 @@ const substituteContent = (userContent: string, skip = 1): string => {
         //if user wants to skip backward
         else {
           substitutedContent = reverseEngAlphabets.concat(
-            engAlphabets[charIndex + skip]
+            engAlphabets[charIndex + Math.abs(skip)]
           );
         }
       }
