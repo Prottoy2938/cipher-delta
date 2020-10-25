@@ -6,6 +6,7 @@ import Head from "next/head";
 
 const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");
+  const [skip, setSkip] = useState(5);
   return (
     <>
       <Head>
@@ -15,8 +16,12 @@ const Home: React.FC = () => {
         />
       </Head>
       <div className={styles.container}>
-        <HandleInput setUserContent={setUserContent} />
-        <HandleOutput userContent={userContent} />
+        <HandleInput
+          setUserContent={setUserContent}
+          skip={skip}
+          setSkip={setSkip}
+        />
+        <HandleOutput userContent={userContent} skip={skip} />
       </div>
     </>
   );

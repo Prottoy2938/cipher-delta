@@ -9,32 +9,18 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   Flex,
-  HStack,
-  Button,
-  Input,
-  useNumberInput,
 } from "@chakra-ui/core";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
-  const { setUserContent } = props;
-  const {
-    getInputProps,
-    getIncrementButtonProps,
-    getDecrementButtonProps,
-  } = useNumberInput({
-    step: 1,
-    defaultValue: 5,
-    min: -25,
-    max: 25,
-  });
-
-  const inc = getIncrementButtonProps();
-  const dec = getDecrementButtonProps();
-  const input = getInputProps();
-
+  const { setUserContent, skip, setSkip } = props;
+  const handleSkipChange = (skip: number) => {
+    if (skip <= 25 && skip >= -25) {
+      setSkip(skip);
+    }
+  };
   return (
-    <Flex>
-      <Box flex={1}>
+    <Flex m={0}>
+      <Box>
         <VerificationInput
           input={{ onChange: (e: string) => setUserContent(e) }}
           removeDefaultStyles
@@ -54,11 +40,20 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         />
       </Box>
       <Box w="100px">
-        <HStack maxW="320px">
-          <Button {...inc}>+</Button>
-          <Input {...input} />
-          <Button {...dec}>-</Button>
-        </HStack>
+        <NumberInput
+          max={25}
+          min={-25}
+          keepWithinRange={false}
+          clampValueOnBlur={false}
+          onChange={handleSkipChange}
+          value={skip}
+        >
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
       </Box>
     </Flex>
   );

@@ -2,13 +2,13 @@ import React from "react";
 import { Props } from "./handle-output.model";
 import styles from "./handle-output.module.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { IconButton, useToast, Box } from "@chakra-ui/core";
+import { IconButton, useToast } from "@chakra-ui/core";
 import { CopyIcon } from "@chakra-ui/icons";
 import substituteContent from "../main-algorithm";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
-  const { userContent } = props;
-  const content = substituteContent(userContent);
+  const { userContent, skip } = props;
+  const content = substituteContent(userContent, skip);
   const toast = useToast();
 
   const triggerCopyToast = (): void => {
