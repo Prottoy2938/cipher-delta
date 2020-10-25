@@ -13,9 +13,9 @@ import {
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const { setUserContent, skip, setSkip } = props;
-  const handleSkipChange = (skip: number) => {
+  const handleSkipChange = (skip: any) => {
     if (skip <= 25 && skip >= -25) {
-      setSkip(skip);
+      setSkip(Number(skip));
     }
   };
   return (
