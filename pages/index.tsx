@@ -20,6 +20,7 @@ const Home: React.FC = () => {
           setUserContent={setUserContent}
           skip={skip}
           setSkip={setSkip}
+          userContent={userContent}
         />
         <HandleOutput userContent={userContent} skip={skip} />
       </div>

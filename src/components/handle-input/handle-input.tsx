@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/core";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
-  const { setUserContent, skip, setSkip } = props;
+  const { setUserContent, skip, setSkip, userContent } = props;
   const handleSkipChange = (skip: any) => {
     if (skip <= 25 && skip >= -25) {
       setSkip(Number(skip));
@@ -24,7 +24,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         <VerificationInput
           input={{ onChange: (e: string) => setUserContent(e) }}
           removeDefaultStyles
-          length={12}
+          length={userContent.length + 3 < 10 ? 10 : userContent.length + 3}
           placeholder=" "
           container={{
             className: "container",
