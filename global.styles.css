@@ -40,3 +40,14 @@
   margin-left: 8px;
   border: 2px solid rgb(0, 0, 0);
 }
+
+.user-input-field input {
+  width: 45px !important;
+  height: 45px;
+  background: #ececec;
+  border-radius: 3px;
+}
+
+.input-field-separator {
+  padding: 0 5px;
+}

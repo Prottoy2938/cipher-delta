@@ -1,5 +1,4 @@
 import React from "react";
-import VerificationInput from "react-verification-input";
 import { Props } from "./handle-input.model";
 import {
   Box,
@@ -10,6 +9,7 @@ import {
   NumberDecrementStepper,
   Flex,
 } from "@chakra-ui/core";
+import OtpInput from "react-otp-input";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const { setUserContent, skip, setSkip, userContent } = props;
@@ -19,24 +19,15 @@ const HandleInput: React.FC<Props> = (props: Props) => {
     }
   };
   return (
-    <Flex m={0}>
-      <Box>
-        <VerificationInput
-          input={{ onChange: (e: string) => setUserContent(e) }}
-          removeDefaultStyles
-          length={userContent.length + 3 < 10 ? 10 : userContent.length + 3}
-          placeholder=" "
-          container={{
-            className: "container",
-          }}
-          characters={{
-            className: "characters",
-          }}
-          character={{
-            className: "character",
-            classNameInactive: "character--inactive",
-            classNameSelected: "character--selected",
-          }}
+    <Flex>
+      {/* <Box width={["90%", "80%", "60%", "50%"]} overflow="auto" height={"50%"}> */}
+      <Box overflow="auto" height={"50%"}>
+        <OtpInput
+          containerStyle="user-input-field"
+          value={userContent}
+          onChange={setUserContent}
+          numInputs={userContent.length + 3 < 10 ? 10 : userContent.length + 3}
+          separator={<span className="input-field-separator"></span>}
         />
       </Box>
       <Box w="100px">
