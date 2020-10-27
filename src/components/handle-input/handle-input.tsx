@@ -10,6 +10,7 @@ import {
   Flex,
 } from "@chakra-ui/core";
 import OtpInput from "react-otp-input";
+import OTPInput from "otp-input-react";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const { setUserContent, skip, setSkip, userContent } = props;
@@ -19,11 +20,25 @@ const HandleInput: React.FC<Props> = (props: Props) => {
     }
   };
 
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.keyCode === 32 || event.key === " ") {
+      setUserContent((prevContent) => `${prevContent}-`);
+    }
+  };
+
   return (
     <Flex>
       {/* <Box width={["90%", "80%", "60%", "50%"]} overflow="auto" height={"50%"}> */}
-      <Box overflow="auto" height={"50%"}>
-        <OtpInput
+      <Box overflow="auto" height={"50%"} onKeyUp={handleKeyUp}>
+        <OTPInput
+          value={userContent}
+          onChange={setUserContent}
+          autoFocus
+          OTPLength={userContent.length + 3 < 10 ? 10 : userContent.length + 3}
+          otpType="any"
+          disabled={false}
+        />
+        {/* <OtpInput
           containerStyle="user-input-field"
           value={userContent} //use usercontent replace
           onChange={(e) => {
@@ -32,7 +47,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           }}
           numInputs={userContent.length + 3 < 10 ? 10 : userContent.length + 3}
           separator={<span className="input-field-separator"></span>}
-        />
+        /> */}
       </Box>
       <Box w="100px">
         <NumberInput
