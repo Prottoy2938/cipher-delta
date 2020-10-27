@@ -14,11 +14,10 @@
     "@types/react-otp-input": "^2.0.0",
     "framer-motion": "^2.9.4",
     "next": "9.5.3",
-    "otp-input-react": "^0.2.4",
+    "otp-input-react": "^0.2.0",
     "react": "16.13.1",
     "react-copy-to-clipboard": "^5.0.2",
-    "react-dom": "16.13.1",
-    "react-otp-input": "^2.2.0"
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.5",
