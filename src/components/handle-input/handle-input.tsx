@@ -8,6 +8,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   Flex,
+  Stack,
 } from "@chakra-ui/core";
 import OTPInput from "otp-input-react";
 
@@ -20,9 +21,14 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <Flex>
-      {/* <Box width={["90%", "80%", "60%", "50%"]} overflow="auto" height={"50%"}> */}
-      <Box overflow="auto" height={"50%"}>
+    <Stack isInline={true} spacing={2}>
+      <Box
+        padding="10px"
+        overflow="auto"
+        height="500px"
+        width="100%"
+        border="2px solid #f7f7f7"
+      >
         <OTPInput
           value={userContent}
           onChange={setUserContent}
@@ -31,10 +37,12 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           otpType="any"
           disabled={false}
           className="user-input-field"
+          style={{ display: "block", textAlign: "start" }}
         />
       </Box>
-      <Box w="100px">
+      <Box w="70px">
         <NumberInput
+          size="sm"
           max={25}
           min={-25}
           keepWithinRange={false}
@@ -49,7 +57,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           </NumberInputStepper>
         </NumberInput>
       </Box>
-    </Flex>
+    </Stack>
   );
 };
 

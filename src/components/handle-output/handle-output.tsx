@@ -2,8 +2,7 @@ import React from "react";
 import { Props } from "./handle-output.model";
 import styles from "./handle-output.module.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { IconButton, useToast } from "@chakra-ui/core";
-import { CopyIcon } from "@chakra-ui/icons";
+import { useToast, Button, Box } from "@chakra-ui/core";
 import substituteContent from "../main-algorithm";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
@@ -16,25 +15,18 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       position: "bottom-right",
       status: "success",
       description: "Copied",
+      isClosable: true,
+      duration: 3000,
     });
   };
   return (
-    <div className={styles.container}>
-      <CopyToClipboard text={content}>
-        <IconButton
-          aria-label="copy result"
-          float="right"
-          ml="-53px"
-          mt="-33px"
-          size="sm"
-          borderBottomLeftRadius={0}
-          borderBottomRightRadius={0}
-          onClick={triggerCopyToast}
-          icon={<CopyIcon />}
-        />
-      </CopyToClipboard>
-      <div className={styles.content}>{content}</div>
-    </div>
+    <CopyToClipboard text={content} cursor="pointer">
+      <Box onClick={triggerCopyToast}>
+        <div className={styles.container}>
+          <div className={styles.content}>{content}</div>
+        </div>
+      </Box>
+    </CopyToClipboard>
   );
 };
 
