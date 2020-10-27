@@ -18,14 +18,18 @@ const HandleInput: React.FC<Props> = (props: Props) => {
       setSkip(Number(skip));
     }
   };
+
   return (
     <Flex>
       {/* <Box width={["90%", "80%", "60%", "50%"]} overflow="auto" height={"50%"}> */}
       <Box overflow="auto" height={"50%"}>
         <OtpInput
           containerStyle="user-input-field"
-          value={userContent}
-          onChange={setUserContent}
+          value={userContent} //use usercontent replace
+          onChange={(e) => {
+            console.log(e);
+            setUserContent(e);
+          }}
           numInputs={userContent.length + 3 < 10 ? 10 : userContent.length + 3}
           separator={<span className="input-field-separator"></span>}
         />
