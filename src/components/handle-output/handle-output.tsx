@@ -47,8 +47,9 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
         <Alert status="success" variant="left-accent">
           <AlertIcon />
           <Box flex="1">
-            <AlertTitle> Copied</AlertTitle>
+            <AlertTitle> Copied Cipher to Clipboard</AlertTitle>
             <AlertDescription display="block" mt={6}>
+              {/* <Text fontWeight="bold">Decoding info: </Text> */}
               <Text mb={3}>
                 Substitute Letter Position:{" "}
                 <Code colorScheme="blue">{skip}</Code>
@@ -75,6 +76,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
   return (
     <>
       <Heading as="h3" size="md" textAlign="start" mt={[24, 24, 24, 0]}>
+        {/* Cipher Outcome */}
         Cipher Text
       </Heading>
 
@@ -108,7 +110,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       >
         <Stack spacing={5} direction="row">
           <Radio colorScheme="gray" value="converted">
-            converted
+            cipher
           </Radio>
           <Radio colorScheme="red" value="plain">
             plain

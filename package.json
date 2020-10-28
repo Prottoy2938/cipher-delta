@@ -17,6 +17,7 @@
     "next": "^10.0.0",
     "otp-input-react": "0.2.0",
     "react": "16.13.1",
+    "react-card-flip": "^1.0.11",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "16.13.1",
     "react-grid-system": "^7.1.1",

@@ -15,11 +15,15 @@ import {
   InputGroup,
   InputLeftAddon,
   useToast,
+  Radio,
+  RadioGroup,
+  Textarea,
 } from "@chakra-ui/core";
 import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
 import OTPInput from "otp-input-react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import ReactCardFlip from "react-card-flip";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const toast = useToast();
@@ -34,6 +38,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   } = props;
 
   const [showEncKey, setShowEncKey] = useState(false);
+  const [inputMethod, setInputMethod] = useState("digit");
 
   const handleSkipChange = (skip: any) => {
     if (skip <= 25 && skip >= -25) {
@@ -58,42 +63,107 @@ const HandleInput: React.FC<Props> = (props: Props) => {
     setUserContent("");
   };
 
+  // letter spacing output
   return (
     <>
-      <Heading as="h3" size="md" textAlign="start" mb={5}>
+      <Heading as="h3" size="md" textAlign="start" mb={1}>
         Plain Text
       </Heading>
 
       <Stack isInline={true} spacing={2}>
-        <Box
-          padding="10px"
-          overflow="auto"
-          height="500px"
-          width="100%"
-          border="2px solid #f7f7f7"
-        >
-          <Tooltip hasArrow label="clear input" bg="black" placement="top">
-            <IconButton
-              aria-label="clear input"
-              size="xs"
-              float="right"
-              mb="-30px"
-              onClick={clearUserContent}
-              icon={<CloseIcon />}
-            />
-          </Tooltip>
-          <OTPInput
-            value={userContent}
-            onChange={setUserContent}
-            autoFocus
-            OTPLength={
-              userContent.length + 3 < 10 ? 10 : userContent.length + 3
-            }
-            otpType="any"
-            disabled={false}
-            className="user-input-field"
-            style={{ display: "block", textAlign: "start" }}
-          />
+        <Box width="100%">
+          <ReactCardFlip
+            isFlipped={inputMethod === "text-area"}
+            flipDirection="vertical"
+          >
+            <>
+              <RadioGroup
+                mb={3}
+                bg="white"
+                float="right"
+                onChange={(e: any): void => setInputMethod(e)}
+                value={inputMethod}
+                marginRight={6}
+              >
+                <Stack direction="row">
+                  <Radio value="digit">digit</Radio>
+                  <Radio value="text-area">text-area</Radio>
+                </Stack>
+              </RadioGroup>
+              <Box
+                padding="10px"
+                overflow="auto"
+                height="500px"
+                width="100%"
+                border="2px solid #f7f7f7"
+                mb={2}
+              >
+                <Tooltip
+                  hasArrow
+                  label="clear input"
+                  bg="black"
+                  placement="top"
+                >
+                  <IconButton
+                    aria-label="clear input"
+                    size="xs"
+                    float="right"
+                    mb="-30px"
+                    onClick={clearUserContent}
+                    icon={<CloseIcon />}
+                  />
+                </Tooltip>
+                <OTPInput
+                  value={userContent}
+                  onChange={setUserContent}
+                  autoFocus
+                  OTPLength={
+                    userContent.length + 3 < 10 ? 10 : userContent.length + 3
+                  }
+                  otpType="any"
+                  disabled={false}
+                  className="user-input-field"
+                  style={{ display: "block", textAlign: "start" }}
+                />
+              </Box>
+            </>
+            <>
+              <RadioGroup
+                bg="white"
+                float="right"
+                onChange={(e: any): void => setInputMethod(e)}
+                value={inputMethod}
+                mb={3}
+                marginRight={6}
+              >
+                <Stack direction="row">
+                  <Radio value="digit">digit</Radio>
+                  <Radio value="text-area">text-area</Radio>
+                </Stack>
+              </RadioGroup>
+
+              <Tooltip hasArrow label="clear input" bg="black" placement="top">
+                <IconButton
+                  aria-label="clear input"
+                  size="xs"
+                  pos="absolute"
+                  right={2}
+                  top={12}
+                  onClick={clearUserContent}
+                  icon={<CloseIcon />}
+                />
+              </Tooltip>
+              <Textarea
+                value={userContent}
+                onChange={(e) => setUserContent(e.target.value)}
+                autoFocus
+                placeholder="your input"
+                overflow="auto"
+                height="500px"
+                width="100%"
+              />
+            </>
+          </ReactCardFlip>
         </Box>
 
         <Box w="70px">
