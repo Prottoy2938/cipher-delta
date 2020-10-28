@@ -49,3 +49,7 @@ div .user-input-field input {
   margin-bottom: 10px;
   margin-right: 10px !important;
 }
+
+div .encryption-inp-cn {
+  width: calc(100% - 70px);
+}

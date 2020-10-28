@@ -129,7 +129,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           </NumberInput>
         </Box>
       </Stack>
-      <Box mt={2}>
+      <Box mt={2} className="encryption-inp-cn">
         <InputGroup size="sm">
           <InputLeftAddon>optional</InputLeftAddon>
           <Input
