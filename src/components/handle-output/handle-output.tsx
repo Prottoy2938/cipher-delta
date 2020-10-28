@@ -41,7 +41,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
     toast({
       position: "bottom-right",
       isClosable: true,
-      duration: 12000,
+      duration: 20000,
       // eslint-disable-next-line react/display-name
       render: () => (
         <Alert status="success" variant="left-accent">
@@ -57,11 +57,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
                 Encryption Key:{" "}
                 {encKey ? (
                   <CopyToClipboard text={encKey}>
-                    <Button
-                      onClick={showCopyToast}
-                      colorScheme="teal"
-                      size="xs"
-                    >
+                    <Button onClick={showCopyToast} size="xs">
                       copy
                     </Button>
                   </CopyToClipboard>

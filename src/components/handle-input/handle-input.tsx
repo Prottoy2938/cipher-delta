@@ -54,6 +54,10 @@ const HandleInput: React.FC<Props> = (props: Props) => {
     });
   };
 
+  const clearUserContent = (): void => {
+    setUserContent("");
+  };
+
   return (
     <>
       <Heading as="h3" size="md" textAlign="start" mb={5}>
@@ -74,7 +78,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
               size="xs"
               float="right"
               mb="-30px"
-              onClick={() => setUserContent("")}
+              onClick={clearUserContent}
               icon={<CloseIcon />}
             />
           </Tooltip>
@@ -91,6 +95,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
             style={{ display: "block", textAlign: "start" }}
           />
         </Box>
+
         <Box w="70px">
           <NumberInput
             size="sm"

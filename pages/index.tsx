@@ -4,6 +4,7 @@ import HandleOutput from "../src/components/handle-output/handle-output";
 import Head from "next/head";
 import { Row, Col } from "react-grid-system";
 import { Box, Heading } from "@chakra-ui/core";
+import Drawer from "../src/components/drawer/drawer";
 
 const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");
@@ -34,6 +35,7 @@ const Home: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
+      <Drawer />
       <Box textAlign="center" margin="0 auto">
         <Heading mt={2} mb={16}>
           Cipher Delta
