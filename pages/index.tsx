@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         />
       </Head>
       <Box textAlign="center" margin="0 auto">
-        <Heading mt={2} mb={10}>
+        <Heading mt={2} mb={16}>
           Substitution Cipher
         </Heading>
         <Row style={{ margin: 0 }}>
