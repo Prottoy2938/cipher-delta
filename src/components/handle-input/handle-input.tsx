@@ -26,7 +26,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   return (
     <>
       <Heading as="h3" size="md" textAlign="start" mb={5}>
-        Input
+        Plain Text
       </Heading>
 
       <Stack isInline={true} spacing={2}>
@@ -72,8 +72,22 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           >
             <NumberInputField />
             <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
+              <Tooltip
+                hasArrow
+                label="forward substitute letter position"
+                bg="black"
+                placement="top"
+              >
+                <NumberIncrementStepper />
+              </Tooltip>
+              <Tooltip
+                hasArrow
+                label="backward substitute letter position"
+                bg="black"
+                placement="bottom"
+              >
+                <NumberDecrementStepper />
+              </Tooltip>
             </NumberInputStepper>
           </NumberInput>
         </Box>

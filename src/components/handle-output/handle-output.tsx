@@ -31,7 +31,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
   return (
     <>
       <Heading as="h3" size="md" textAlign="start">
-        Converted Content
+        Cypher Text
       </Heading>
 
       <CopyToClipboard
