@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import HandleInput from "../src/components/handle-input/handle-input";
 import HandleOutput from "../src/components/handle-output/handle-output";
 import Head from "next/head";
-import { Container, Row, Col } from "react-grid-system";
+import { Row, Col } from "react-grid-system";
 import { Box, Heading } from "@chakra-ui/core";
 
 const Home: React.FC = () => {
-  const [userContent, setUserContent] = useState("");
+  const [userContent, setUserContent] = useState("hello world");
   const [skip, setSkip] = useState(5);
   return (
     <>
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         />
       </Head>
       <Box textAlign="center" margin="0 auto">
-        <Heading mt={4} mb={8}>
+        <Heading mt={2} mb={10}>
           Substitution Cipher
         </Heading>
         <Row style={{ margin: 0 }}>

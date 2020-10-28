@@ -7,7 +7,6 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  Flex,
   Stack,
 } from "@chakra-ui/core";
 import OTPInput from "otp-input-react";

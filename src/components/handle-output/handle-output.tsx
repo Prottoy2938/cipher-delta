@@ -1,8 +1,7 @@
 import React from "react";
 import { Props } from "./handle-output.model";
-import styles from "./handle-output.module.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useToast, Button, Box } from "@chakra-ui/core";
+import { useToast, Box, Text } from "@chakra-ui/core";
 import substituteContent from "../main-algorithm";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
@@ -21,10 +20,21 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
   };
   return (
     <CopyToClipboard text={content} cursor="pointer">
-      <Box onClick={triggerCopyToast}>
-        <div className={styles.container}>
-          <div className={styles.content}>{content}</div>
-        </div>
+      <Box
+        onClick={triggerCopyToast}
+        cursor="text"
+        background="#f5f5f5"
+        m="0 auto"
+        mt={10}
+        width="100%"
+        height={["100%", "100%", "100%", "80%"]}
+        border="2px solid #e8e8e8"
+        borderRadius={2}
+        textAlign="start"
+        padding={5}
+        fontSize="lg"
+      >
+        {content}
       </Box>
     </CopyToClipboard>
   );
