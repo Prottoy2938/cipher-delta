@@ -11,6 +11,20 @@ const Home: React.FC = () => {
   return (
     <>
       <Head>
+        <title>Cipher Delta</title>
+        <link rel="shortcut icon" href="/favicon.svg" />
+
+        <meta property="og:title" content="Cipher Delta" />
+        <meta
+          name="description"
+          content="Change regular contents to cryptic words"
+        />
+        <meta
+          property="og:description"
+          content="Change regular contents to cryptic words"
+        />
+
+        <meta property="og:image" content="/logo-img-1200.png" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
           rel="stylesheet"
