@@ -7,6 +7,7 @@ import { Box, Heading } from "@chakra-ui/core";
 
 const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");
+  const [encKey, setEncKey] = useState("");
   const [skip, setSkip] = useState(1);
   return (
     <>
@@ -35,7 +36,7 @@ const Home: React.FC = () => {
       </Head>
       <Box textAlign="center" margin="0 auto">
         <Heading mt={2} mb={16}>
-          Substitution Cipher
+          Cipher Delta
         </Heading>
         <Row style={{ margin: 0 }}>
           <Col xs={12} sm={12} md={12} lg={7} xl={7}>
@@ -44,10 +45,16 @@ const Home: React.FC = () => {
               skip={skip}
               setSkip={setSkip}
               userContent={userContent}
+              setEncKey={setEncKey}
+              encKey={encKey}
             />
           </Col>
           <Col xs={12} sm={12} md={12} lg={5} xl={5}>
-            <HandleOutput userContent={userContent} skip={skip} />
+            <HandleOutput
+              encKey={encKey}
+              userContent={userContent}
+              skip={skip}
+            />
           </Col>
         </Row>
       </Box>

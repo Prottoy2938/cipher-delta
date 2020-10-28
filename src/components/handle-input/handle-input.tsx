@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Props } from "./handle-input.model";
 import {
   Box,
@@ -11,16 +11,47 @@ import {
   Heading,
   IconButton,
   Tooltip,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  useToast,
 } from "@chakra-ui/core";
-import { CloseIcon } from "@chakra-ui/icons";
+import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
 import OTPInput from "otp-input-react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
-  const { setUserContent, skip, setSkip, userContent } = props;
+  const toast = useToast();
+
+  const {
+    setUserContent,
+    setEncKey,
+    encKey,
+    skip,
+    setSkip,
+    userContent,
+  } = props;
+
+  const [showEncKey, setShowEncKey] = useState(false);
+
   const handleSkipChange = (skip: any) => {
     if (skip <= 25 && skip >= -25) {
       setSkip(Number(skip));
     }
+  };
+
+  const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setEncKey(e.target.value);
+  };
+
+  const triggerCopyToast = (): void => {
+    toast({
+      status: "info",
+      description: "Copied",
+      isClosable: true,
+      duration: 3000,
+    });
   };
 
   return (
@@ -71,7 +102,8 @@ const HandleInput: React.FC<Props> = (props: Props) => {
             value={skip}
           >
             <NumberInputField />
-            <NumberInputStepper>
+
+            <NumberInputStepper bg="white">
               <Tooltip
                 hasArrow
                 label="forward substitute letter position"
@@ -92,6 +124,49 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           </NumberInput>
         </Box>
       </Stack>
+      <Box mt={2}>
+        <InputGroup size="sm">
+          <InputLeftAddon>optional</InputLeftAddon>
+          <Input
+            type={showEncKey ? "text" : "password"}
+            placeholder="encryption key"
+            width="250px"
+            value={encKey}
+            onChange={handleKeyChange}
+          />
+          <IconButton
+            variant="outline"
+            size="sm"
+            aria-label="view key"
+            icon={showEncKey ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+            onClick={(): void => setShowEncKey(!showEncKey)}
+            borderRadius={1}
+            borderTopLeftRadius={0}
+            borderBottomLeftRadius={0}
+          />
+          <CopyToClipboard text={encKey} cursor="pointer">
+            <Tooltip
+              bg="black"
+              hasArrow
+              shouldWrapChildren
+              label="copy key"
+              placement="top"
+            >
+              <IconButton
+                onClick={triggerCopyToast}
+                ml={2}
+                variant="outline"
+                size="sm"
+                aria-label="copy encryption key"
+                icon={<CopyIcon />}
+                borderRadius={1}
+                borderTopLeftRadius={0}
+                borderBottomLeftRadius={0}
+              />
+            </Tooltip>
+          </CopyToClipboard>
+        </InputGroup>
+      </Box>
     </>
   );
 };

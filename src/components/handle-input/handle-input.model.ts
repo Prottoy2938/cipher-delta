@@ -3,4 +3,6 @@ export interface Props {
   skip: number;
   userContent: string;
   setSkip: React.Dispatch<React.SetStateAction<number>>;
+  setEncKey: React.Dispatch<React.SetStateAction<string>>;
+  encKey: string;
 }
