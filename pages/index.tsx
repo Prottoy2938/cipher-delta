@@ -24,7 +24,10 @@ const Home: React.FC = () => {
           content="Change regular contents to cryptic words"
         />
 
-        <meta property="og:image" content="/logo-img-1200.png" />
+        <meta
+          property="og:image"
+          content="https://cipher-delta.edrini.xyz/logo-img-1200.png"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
           rel="stylesheet"
