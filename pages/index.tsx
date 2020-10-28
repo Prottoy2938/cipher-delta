@@ -6,8 +6,8 @@ import { Row, Col } from "react-grid-system";
 import { Box, Heading } from "@chakra-ui/core";
 
 const Home: React.FC = () => {
-  const [userContent, setUserContent] = useState("hello world");
-  const [skip, setSkip] = useState(5);
+  const [userContent, setUserContent] = useState("");
+  const [skip, setSkip] = useState(1);
   return (
     <>
       <Head>

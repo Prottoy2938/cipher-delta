@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Props } from "./handle-output.model";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useToast, Box, Text, Heading } from "@chakra-ui/core";
+import {
+  useToast,
+  Box,
+  Heading,
+  Tooltip,
+  RadioGroup,
+  Radio,
+  Stack,
+} from "@chakra-ui/core";
 import substituteContent from "../main-algorithm";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
   const { userContent, skip } = props;
-  const content = substituteContent(userContent, skip);
+
+  const [viewAs, setViewAs] = useState("converted");
+  const convertedContent = substituteContent(userContent, skip);
   const toast = useToast();
 
   const triggerCopyToast = (): void => {
@@ -23,7 +33,11 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       <Heading as="h3" size="md" textAlign="start">
         Converted Content
       </Heading>
-      <CopyToClipboard text={content} cursor="pointer">
+
+      <CopyToClipboard
+        text={viewAs === "converted" ? convertedContent : userContent}
+        cursor="pointer"
+      >
         <Box
           onClick={triggerCopyToast}
           cursor="text"
@@ -38,9 +52,24 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           padding={5}
           fontSize="lg"
         >
-          {content}
+          {viewAs === "converted" ? convertedContent : userContent}
         </Box>
       </CopyToClipboard>
+      <RadioGroup
+        float="right"
+        mt={5}
+        value={viewAs}
+        onChange={(e: any): void => setViewAs(e)}
+      >
+        <Stack spacing={5} direction="row">
+          <Radio colorScheme="gray" value="converted">
+            converted
+          </Radio>
+          <Radio colorScheme="red" value="plain">
+            plain
+          </Radio>
+        </Stack>
+      </RadioGroup>
     </>
   );
 };
