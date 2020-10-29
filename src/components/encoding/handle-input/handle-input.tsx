@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Props } from "./handle-input.model";
 import {
   Box,
@@ -93,6 +93,14 @@ const HandleInput: React.FC<Props> = (props: Props) => {
       duration: 3000,
     });
   };
+  //IMPORTANT, FIX THE LARGE TEXT PASTE ISSUE
+  const handleUserInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setUserContent(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log("HandleInput re-rendering");
+  }, []);
 
   // letter spacing output
   return (
@@ -100,8 +108,100 @@ const HandleInput: React.FC<Props> = (props: Props) => {
       <Heading as="h3" size="md" textAlign="start" mb={1}>
         Plain Text
       </Heading>
+      <Box width="100%">
+        <ReactCardFlip
+          isFlipped={inputMethod === "text-area"}
+          flipDirection="vertical"
+        >
+          <>
+            <RadioGroup
+              mb={3}
+              bg="white"
+              float="right"
+              onChange={(e: any): void => setInputMethod(e)}
+              value={inputMethod}
+              marginRight={6}
+            >
+              <Stack direction="row">
+                <Radio value="digit">digit</Radio>
+                <Radio value="text-area">text-area</Radio>
+              </Stack>
+            </RadioGroup>
+            <Box
+              padding="10px"
+              overflow="auto"
+              height="500px"
+              width="100%"
+              border="2px solid #f7f7f7"
+              mb={2}
+            >
+              <Tooltip hasArrow label="clear input" bg="black" placement="top">
+                <IconButton
+                  aria-label="clear input"
+                  size="xs"
+                  float="right"
+                  mb="-30px"
+                  onClick={clearUserContent}
+                  icon={<CloseIcon />}
+                />
+              </Tooltip>
+              {inputMethod === "digit" && (
+                <OTPInput
+                  value={userContent}
+                  onChange={setUserContent}
+                  autoFocus
+                  OTPLength={
+                    userContent.length + 3 < 10 ? 10 : userContent.length + 3
+                  }
+                  otpType="any"
+                  disabled={false}
+                  className="user-input-field"
+                  style={{ display: "block", textAlign: "start" }}
+                />
+              )}
+            </Box>
+          </>
+          <>
+            <RadioGroup
+              bg="white"
+              float="right"
+              onChange={(e: any): void => setInputMethod(e)}
+              value={inputMethod}
+              mb={3}
+              marginRight={6}
+            >
+              <Stack direction="row">
+                <Radio value="digit">digit</Radio>
+                <Radio value="text-area">text-area</Radio>
+              </Stack>
+            </RadioGroup>
 
-      <Stack isInline={true} spacing={2}>
+            <Tooltip hasArrow label="clear input" bg="black" placement="top">
+              <IconButton
+                aria-label="clear input"
+                size="xs"
+                pos="absolute"
+                zIndex={10}
+                right={2}
+                top={12}
+                onClick={clearUserContent}
+                icon={<CloseIcon />}
+              />
+            </Tooltip>
+            <Textarea
+              value={userContent}
+              onChange={handleUserInputChange}
+              autoFocus
+              placeholder="your input"
+              overflow="auto"
+              height="500px"
+              width="100%"
+            />
+          </>
+        </ReactCardFlip>
+      </Box>
+
+      {/* <Stack isInline={true} spacing={2}>
         <Box width="100%">
           <ReactCardFlip
             isFlipped={inputMethod === "text-area"}
@@ -187,7 +287,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
               </Tooltip>
               <Textarea
                 value={userContent}
-                onChange={(e) => setUserContent(e.target.value)}
+                onChange={handleUserInputChange}
                 autoFocus
                 placeholder="your input"
                 overflow="auto"
@@ -306,7 +406,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
             </Tooltip>
           </CopyToClipboard>
         </InputGroup>
-      </Box>
+      </Box> */}
     </>
   );
 };
