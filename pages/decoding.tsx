@@ -5,28 +5,22 @@ import Head from "next/head";
 import { Row, Col } from "react-grid-system";
 import { Box, Heading, Button, Text } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import Link from "next/link";
 
-const Home: React.FC = () => {
+const Decoding: React.FC = () => {
   const [userContent, setUserContent] = useState("");
   const [encKey, setEncKey] = useState({ key: "", enabled: false });
   const [skip, setSkip] = useState(1);
   return (
     <>
       <Head>
-        <title>Encoding - Cipher Delta</title>
+        <title>Decoding - Cipher Delta</title>
         <link rel="shortcut icon" href="/favicon.svg" />
 
-        <meta property="og:title" content="Encoding - Cipher Delta" />
-        <meta
-          name="description"
-          content="A web application that helps encode and decode plain content"
-        />
-        <meta
-          property="og:description"
-          content="A web application that helps encode and decode plain content"
-        />
+        <meta property="og:title" content="Decoding - Cipher Delta" />
+        <meta name="description" content="Decode cipher content" />
+        <meta property="og:description" content="Decode cipher content" />
 
         <meta
           property="og:image"
@@ -37,22 +31,22 @@ const Home: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <a href="/decoding">
+      <a href="/">
         <Button
-          rightIcon={<ArrowForwardIcon />}
+          leftIcon={<ArrowBackIcon />}
           colorScheme="gray"
           variant="link"
           pos="absolute"
           ml={[1, 1, 2, 3]}
         >
-          Decoding
+          Encoding
         </Button>
       </a>
       <Drawer />
 
       <Box textAlign="center" margin="0 auto">
         <Heading mt={2} mb={16}>
-          Encoding
+          Decoding
         </Heading>
         <Row style={{ margin: 0 }}>
           <Col xs={12} sm={12} md={12} lg={7} xl={7}>
@@ -78,4 +72,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Decoding;

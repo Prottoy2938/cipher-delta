@@ -69,7 +69,7 @@ const DashboardDrawer: React.FC = () => {
               mb={6}
               onClick={showCopyToast}
             >
-              G. Encryption Key
+              Secure Encryption Key
             </Button>
           </DrawerBody>
         </DrawerContent>
