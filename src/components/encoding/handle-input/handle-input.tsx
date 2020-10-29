@@ -15,17 +15,13 @@ import {
   InputGroup,
   InputLeftAddon,
   useToast,
-  Radio,
-  RadioGroup,
   Textarea,
   InputRightAddon,
   Button,
 } from "@chakra-ui/core";
 import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
-import OTPInput from "otp-input-react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import ReactCardFlip from "react-card-flip";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const toast = useToast();
@@ -40,7 +36,6 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   } = props;
 
   const [showEncKey, setShowEncKey] = useState(false);
-  const [inputMethod, setInputMethod] = useState("text-area");
 
   const handleSkipChange = (skip: any) => {
     if (skip <= 25 && skip >= -25) {
@@ -191,7 +186,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
                 fontWeight="regular"
                 onClick={handleEncryptContent}
               >
-                encrypt
+                use
               </Button>
             )}
           </InputRightAddon>

@@ -15,17 +15,13 @@ import {
   InputGroup,
   InputLeftAddon,
   useToast,
-  Radio,
-  RadioGroup,
   Textarea,
   InputRightAddon,
   Button,
 } from "@chakra-ui/core";
 import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
-import OTPInput from "otp-input-react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import ReactCardFlip from "react-card-flip";
 import Image from "next/image";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
