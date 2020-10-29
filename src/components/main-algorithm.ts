@@ -88,21 +88,20 @@ const substituteContent = (userContent: string, skip = 1): string => {
         //if the user word is uppercase, keeping the letter casing
         if (char === char.toUpperCase()) {
           //if user wants to skip forward
-
-          substitutedContent = substitutedContent.concat(
-            engAlphabets[charIndex + skip].toUpperCase()
-          );
+          substitutedContent = `${substitutedContent}${engAlphabets[
+            charIndex + skip
+          ].toUpperCase()}`;
         }
         //if the user word is lowercase
         else {
-          substitutedContent = substitutedContent.concat(
+          substitutedContent = `${substitutedContent}${
             engAlphabets[charIndex + skip]
-          );
+          }`;
         }
       }
       //if the char doesn't exists in the alphabet list
       else {
-        substitutedContent = substitutedContent.concat(char);
+        substitutedContent = `${substitutedContent}${char}`;
       }
     }
     //if user wants to skip backward
@@ -114,21 +113,20 @@ const substituteContent = (userContent: string, skip = 1): string => {
         //if the user word is uppercase, keeping the letter casing
         if (char === char.toUpperCase()) {
           //if user wants to skip forward
-
-          substitutedContent = substitutedContent.concat(
-            reverseEngAlphabets[charIndex + Math.abs(skip)].toUpperCase()
-          );
+          substitutedContent = `${substitutedContent}${reverseEngAlphabets[
+            charIndex + Math.abs(skip)
+          ].toUpperCase()}`;
         }
         //if the user word is lowercased
         else {
-          substitutedContent = substitutedContent.concat(
+          substitutedContent = `${substitutedContent}${
             reverseEngAlphabets[charIndex + Math.abs(skip)]
-          );
+          }`;
         }
       }
       //if the char doesn't exists in the alphabet list
       else {
-        substitutedContent = substitutedContent.concat(char);
+        substitutedContent = `${substitutedContent}${char}`;
       }
     }
   }
