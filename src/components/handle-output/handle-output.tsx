@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Props } from "./handle-output.model";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import {
@@ -19,12 +19,13 @@ import {
   Code,
 } from "@chakra-ui/core";
 import substituteContent from "../main-algorithm";
+import CryptoJS from "crypto-js";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
   const { userContent, skip, encKey } = props;
 
   const [viewAs, setViewAs] = useState("converted");
-  const convertedContent = substituteContent(userContent, skip);
+  const [convertedContent, setConvertedContent] = useState("");
   const toast = useToast();
 
   const showCopyToast = (): void => {
@@ -36,6 +37,18 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       isClosable: true,
     });
   };
+
+  useEffect(() => {
+    if (encKey.enabled) {
+      const cypherText = CryptoJS.AES.encrypt(
+        substituteContent(userContent, skip),
+        encKey.key
+      ).toString();
+      setConvertedContent(cypherText);
+    } else {
+      setConvertedContent(substituteContent(userContent, skip));
+    }
+  }, [userContent, encKey.enabled, encKey.key, skip]);
 
   const triggerCopyToast = (): void => {
     toast({
@@ -49,15 +62,14 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           <Box flex="1">
             <AlertTitle> Copied Cipher to Clipboard</AlertTitle>
             <AlertDescription display="block" mt={6}>
-              {/* <Text fontWeight="bold">Decoding info: </Text> */}
               <Text mb={3}>
                 Substitute Letter Position:{" "}
                 <Code colorScheme="blue">{skip}</Code>
               </Text>
               <Text>
                 Encryption Key:{" "}
-                {encKey ? (
-                  <CopyToClipboard text={encKey}>
+                {encKey.enabled ? (
+                  <CopyToClipboard text={encKey.key}>
                     <Button onClick={showCopyToast} size="xs">
                       copy
                     </Button>

@@ -8,7 +8,7 @@ import Drawer from "../src/components/drawer/drawer";
 
 const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");
-  const [encKey, setEncKey] = useState("");
+  const [encKey, setEncKey] = useState({ key: "", enabled: false });
   const [skip, setSkip] = useState(1);
   return (
     <>

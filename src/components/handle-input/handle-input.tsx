@@ -49,7 +49,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   };
 
   const handleKeyChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setEncKey(e.target.value);
+    setEncKey({ ...encKey, key: e.target.value });
   };
 
   const triggerCopyToast = (): void => {
@@ -66,13 +66,14 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   };
 
   const handleEncryptContent = (): void => {
-    if (encKey.length) {
+    if (encKey.key.length) {
       toast({
         status: "info",
         description: "Key encryption enabled",
         isClosable: true,
         duration: 3000,
       });
+      setEncKey({ ...encKey, enabled: true });
     } else {
       toast({
         status: "warning",
@@ -81,6 +82,16 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         duration: 3000,
       });
     }
+  };
+
+  const removeEncryption = (): void => {
+    setEncKey({ key: "", enabled: false });
+    toast({
+      status: "warning",
+      description: "Key encryption removed",
+      isClosable: true,
+      duration: 3000,
+    });
   };
 
   // letter spacing output
@@ -226,20 +237,34 @@ const HandleInput: React.FC<Props> = (props: Props) => {
             type={showEncKey ? "text" : "password"}
             placeholder="encryption key"
             width="250px"
-            value={encKey}
+            value={encKey.key}
             onChange={handleKeyChange}
+            disabled={encKey.enabled}
           />
-          <InputRightAddon mr={3} as="button" padding="0">
-            <Button
-              borderRadius={0}
-              height="100%"
-              width="60px"
-              size="sm"
-              fontWeight="regular"
-              onClick={handleEncryptContent}
-            >
-              encrypt
-            </Button>
+          <InputRightAddon mr={3} padding="0">
+            {encKey.enabled ? (
+              <Button
+                borderRadius={0}
+                height="100%"
+                width="130px"
+                size="sm"
+                fontWeight="regular"
+                onClick={removeEncryption}
+              >
+                remove encryption
+              </Button>
+            ) : (
+              <Button
+                borderRadius={0}
+                height="100%"
+                width="60px"
+                size="sm"
+                fontWeight="regular"
+                onClick={handleEncryptContent}
+              >
+                encrypt
+              </Button>
+            )}
           </InputRightAddon>
           <IconButton
             variant="outline"
