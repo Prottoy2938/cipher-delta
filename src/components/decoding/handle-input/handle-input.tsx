@@ -163,7 +163,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
                 fontWeight="regular"
                 onClick={handleEncryptContent}
               >
-                encrypt
+                use
               </Button>
             )}
           </InputRightAddon>

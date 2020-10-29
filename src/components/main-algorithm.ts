@@ -79,7 +79,8 @@ const revEngAlIndexes = {
  */
 const substituteContent = (userContent: string, skip = 1): string => {
   let substitutedContent = "";
-  for (const char of userContent) {
+  for (let i = 0; i < userContent.length; i++) {
+    const char = userContent[i];
     //if user wants to skip forward
     if (skip >= 0) {
       //finding the char index on the list

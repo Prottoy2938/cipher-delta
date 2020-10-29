@@ -40,7 +40,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   } = props;
 
   const [showEncKey, setShowEncKey] = useState(false);
-  const [inputMethod, setInputMethod] = useState("digit");
+  const [inputMethod, setInputMethod] = useState("text-area");
 
   const handleSkipChange = (skip: any) => {
     if (skip <= 25 && skip >= -25) {
