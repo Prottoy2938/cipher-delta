@@ -2,6 +2,8 @@
 
 **A web application that helps encode and decode plain content.**
 
+![Application Preview](https://cipher-delta.edrini.xyz/webapp-preview.jpg)
+
 Currently it supports:
 
 - substitution cipher
