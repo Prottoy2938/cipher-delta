@@ -1,8 +1,12 @@
-# Next.js + TypeScript + Jest + ESLint
+# Cipher Delta
 
-**This example shows how to configure Jest, TypeScript and ESLint to work with Next.js.**  
-**This includes Next.js' built-in support for Global CSS, CSS Modules, and TypeScript!**
+**A web application that helps encode and decode plain content.**
 
-## Usage
+Currently it supports:
 
-**Just clone this template and get started, theres already a demo component with unit-test files**
+- substitution cipher
+- content encryption
+
+Application link: https://cipher-delta.edrini.xyz/
+
+View Source: https://github.com/Prottoy2938/substitution-cipher

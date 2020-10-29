@@ -19,11 +19,11 @@ const Home: React.FC = () => {
         <meta property="og:title" content="Cipher Delta" />
         <meta
           name="description"
-          content="Change regular contents to cryptic words"
+          content="A web application that helps encode and decode plain content"
         />
         <meta
           property="og:description"
-          content="Change regular contents to cryptic words"
+          content="A web application that helps encode and decode plain content"
         />
 
         <meta
