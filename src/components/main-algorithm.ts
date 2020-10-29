@@ -5,6 +5,64 @@ function reverse(s) {
 const engAlphabets = "abcdefghijklmnopqrstuvwxyz".repeat(3);
 const reverseEngAlphabets = reverse("abcdefghijklmnopqrstuvwxyz").repeat(3);
 
+const engAlIndexes = {
+  a: 0,
+  b: 1,
+  c: 2,
+  d: 3,
+  e: 4,
+  f: 5,
+  g: 6,
+  h: 7,
+  i: 8,
+  j: 9,
+  k: 10,
+  l: 11,
+  m: 12,
+  n: 13,
+  o: 14,
+  p: 15,
+  q: 16,
+  r: 17,
+  s: 18,
+  t: 19,
+  u: 20,
+  v: 21,
+  w: 22,
+  x: 23,
+  y: 24,
+  z: 25,
+};
+
+const revEngAlIndexes = {
+  z: 0,
+  y: 1,
+  x: 2,
+  w: 3,
+  v: 4,
+  u: 5,
+  t: 6,
+  s: 7,
+  r: 8,
+  q: 9,
+  p: 10,
+  o: 11,
+  n: 12,
+  m: 13,
+  l: 14,
+  k: 15,
+  j: 16,
+  i: 17,
+  h: 18,
+  g: 19,
+  f: 20,
+  e: 21,
+  d: 22,
+  c: 23,
+  b: 24,
+  a: 25,
+};
+
 //string reverse if negative number
 
 /**
@@ -25,7 +83,7 @@ const substituteContent = (userContent: string, skip = 1): string => {
     //if user wants to skip forward
     if (skip >= 0) {
       //finding the char index on the list
-      const charIndex = engAlphabets.indexOf(char.toLowerCase());
+      const charIndex = engAlIndexes[char.toLowerCase()];
       if (charIndex >= 0) {
         //if the user word is uppercase, keeping the letter casing
         if (char === char.toUpperCase()) {
@@ -51,7 +109,7 @@ const substituteContent = (userContent: string, skip = 1): string => {
     else if (skip >= -25) {
       console.log(skip);
       //finding the char index on the list
-      const charIndex = reverseEngAlphabets.indexOf(char.toLowerCase());
+      const charIndex = revEngAlIndexes[char.toLowerCase()];
       if (charIndex >= 0) {
         //if the user word is uppercase, keeping the letter casing
         if (char === char.toUpperCase()) {
