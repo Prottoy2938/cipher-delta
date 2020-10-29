@@ -18,6 +18,8 @@ import {
   Radio,
   RadioGroup,
   Textarea,
+  InputRightAddon,
+  Button,
 } from "@chakra-ui/core";
 import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
 import OTPInput from "otp-input-react";
@@ -61,6 +63,24 @@ const HandleInput: React.FC<Props> = (props: Props) => {
 
   const clearUserContent = (): void => {
     setUserContent("");
+  };
+
+  const handleEncryptContent = (): void => {
+    if (encKey.length) {
+      toast({
+        status: "info",
+        description: "Key encryption enabled",
+        isClosable: true,
+        duration: 3000,
+      });
+    } else {
+      toast({
+        status: "warning",
+        description: "Encryption key cannot be empty",
+        isClosable: true,
+        duration: 3000,
+      });
+    }
   };
 
   // letter spacing output
@@ -209,6 +229,18 @@ const HandleInput: React.FC<Props> = (props: Props) => {
             value={encKey}
             onChange={handleKeyChange}
           />
+          <InputRightAddon mr={3} as="button" padding="0">
+            <Button
+              borderRadius={0}
+              height="100%"
+              width="60px"
+              size="sm"
+              fontWeight="regular"
+              onClick={handleEncryptContent}
+            >
+              encrypt
+            </Button>
+          </InputRightAddon>
           <IconButton
             variant="outline"
             size="sm"

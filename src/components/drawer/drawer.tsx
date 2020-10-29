@@ -30,7 +30,7 @@ const DashboardDrawer: React.FC = () => {
     navigator.clipboard.writeText(genRan());
     toast({
       title: "Copied",
-      description: "New encryption key copied to clipboard",
+      description: "Generated new encryption key copied to clipboard",
       status: "info",
       duration: 9000,
       isClosable: true,
