@@ -3,7 +3,7 @@ import HandleInput from "../src/components/handle-input/handle-input";
 import HandleOutput from "../src/components/handle-output/handle-output";
 import Head from "next/head";
 import { Row, Col } from "react-grid-system";
-import { Box, Heading } from "@chakra-ui/core";
+import { Box, Heading, Select } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
 
 const Home: React.FC = () => {
@@ -35,7 +35,12 @@ const Home: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
+      <Select w="150px" pos="absolute" ml={[1, 1, 2, 3]} mb={0}>
+        <option value="Encode">Encode</option>
+        <option value="Decode">Decode</option>
+      </Select>
       <Drawer />
+
       <Box textAlign="center" margin="0 auto">
         <Heading mt={2} mb={16}>
           Cipher Delta

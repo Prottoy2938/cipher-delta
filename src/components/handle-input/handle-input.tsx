@@ -266,16 +266,23 @@ const HandleInput: React.FC<Props> = (props: Props) => {
               </Button>
             )}
           </InputRightAddon>
-          <IconButton
-            variant="outline"
-            size="sm"
-            aria-label="view key"
-            icon={showEncKey ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-            onClick={(): void => setShowEncKey(!showEncKey)}
-            borderRadius={1}
-            borderTopLeftRadius={0}
-            borderBottomLeftRadius={0}
-          />
+          <Tooltip
+            hasArrow
+            label={`${showEncKey ? "hide" : "view"} key`}
+            bg="black"
+            placement="top"
+          >
+            <IconButton
+              variant="outline"
+              size="sm"
+              aria-label="view key"
+              icon={showEncKey ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+              onClick={(): void => setShowEncKey(!showEncKey)}
+              borderRadius={1}
+              borderTopLeftRadius={0}
+              borderBottomLeftRadius={0}
+            />
+          </Tooltip>
           <CopyToClipboard text={encKey} cursor="pointer">
             <Tooltip
               bg="black"
