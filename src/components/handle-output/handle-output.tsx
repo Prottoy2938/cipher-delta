@@ -60,7 +60,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
         <Alert status="success" variant="left-accent">
           <AlertIcon />
           <Box flex="1">
-            <AlertTitle> Copied Cipher to Clipboard</AlertTitle>
+            <AlertTitle>Cipher copied to clipboard</AlertTitle>
             <AlertDescription display="block" mt={6}>
               <Text mb={3}>
                 Substitute Letter Position:{" "}

@@ -178,6 +178,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
                   aria-label="clear input"
                   size="xs"
                   pos="absolute"
+                  zIndex={10}
                   right={2}
                   top={12}
                   onClick={clearUserContent}

@@ -3,8 +3,10 @@ import HandleInput from "../src/components/handle-input/handle-input";
 import HandleOutput from "../src/components/handle-output/handle-output";
 import Head from "next/head";
 import { Row, Col } from "react-grid-system";
-import { Box, Heading, Select } from "@chakra-ui/core";
+import { Box, Heading, Button, Text } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
+import Link from "next/link";
 
 const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");
@@ -13,7 +15,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Cipher Delta</title>
+        <title>Encoding - Cipher Delta</title>
         <link rel="shortcut icon" href="/favicon.svg" />
 
         <meta property="og:title" content="Cipher Delta" />
@@ -35,15 +37,22 @@ const Home: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <Select w="150px" pos="absolute" ml={[1, 1, 2, 3]} mb={0}>
-        <option value="Encode">Encode</option>
-        <option value="Decode">Decode</option>
-      </Select>
+      <Link href="/decoding">
+        <Button
+          rightIcon={<ArrowForwardIcon />}
+          colorScheme="gray"
+          variant="link"
+          pos="absolute"
+          ml={[1, 1, 2, 3]}
+        >
+          Decoding
+        </Button>
+      </Link>
       <Drawer />
 
       <Box textAlign="center" margin="0 auto">
         <Heading mt={2} mb={16}>
-          Cipher Delta
+          Encoding
         </Heading>
         <Row style={{ margin: 0 }}>
           <Col xs={12} sm={12} md={12} lg={7} xl={7}>
