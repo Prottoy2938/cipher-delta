@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import HandleInput from "../src/components/handle-input/handle-input";
-import HandleOutput from "../src/components/handle-output/handle-output";
+import HandleInput from "../src/components/encoding/handle-input/handle-input";
+import HandleOutput from "../src/components/encoding/handle-output/handle-output";
 import Head from "next/head";
 import { Row, Col } from "react-grid-system";
-import { Box, Heading, Button, Text } from "@chakra-ui/core";
+import { Box, Heading, Button } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import Link from "next/link";
 
 const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");

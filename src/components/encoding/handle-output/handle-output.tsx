@@ -18,7 +18,7 @@ import {
   CloseButton,
   Code,
 } from "@chakra-ui/core";
-import substituteContent from "../main-algorithm";
+import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
@@ -103,12 +103,12 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           m="0 auto"
           mt={10}
           width="100%"
-          height={["100%", "100%", "100%", "80%"]}
+          height="500px"
           border="2px solid #e8e8e8"
           borderRadius={2}
           textAlign="start"
           padding={5}
-          fontSize="lg"
+          overflow="auto"
         >
           {viewAs === "converted" ? convertedContent : userContent}
         </Box>
