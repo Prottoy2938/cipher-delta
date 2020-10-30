@@ -9,8 +9,8 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
-    "@chakra-ui/core": "^1.0.0-rc.5",
-    "@chakra-ui/icons": "^1.0.0-rc.5",
+    "@chakra-ui/core": "^1.0.0-rc.8",
+    "@chakra-ui/icons": "^1.0.0-rc.8",
     "@types/react-otp-input": "^2.0.0",
     "crypto-js": "^4.0.0",
     "framer-motion": "^2.9.4",

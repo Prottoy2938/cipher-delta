@@ -98,18 +98,18 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         Cipher Text
       </Heading>
 
-      {/* <Tooltip hasArrow label="clear input" bg="black" placement="top">
-            <IconButton
-              aria-label="clear input"
-              size="xs"
-              pos="absolute"
-              zIndex={10}
-              right={2}
-              top={12}
-              onClick={clearUserContent}
-              icon={<CloseIcon />}
-            />
-          </Tooltip> */}
+      <Tooltip label="clear input" bg="black" placement="top">
+        <IconButton
+          aria-label="clear input"
+          size="xs"
+          pos="absolute"
+          zIndex={10}
+          right={5}
+          top={20}
+          onClick={clearUserContent}
+          icon={<CloseIcon />}
+        />
+      </Tooltip>
       <Textarea
         mt={10}
         value={userContent}

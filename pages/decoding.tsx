@@ -32,45 +32,51 @@ const Decoding: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <a href="/">
-        <Button
-          leftIcon={<ArrowBackIcon />}
-          colorScheme="gray"
-          variant="link"
-          pos="absolute"
-          ml={[1, 1, 2, 3]}
-        >
-          Encoding
-        </Button>
-      </a>
-      <Drawer />
+      <Box mb="120px">
+        <a href="/">
+          <Button
+            leftIcon={<ArrowBackIcon />}
+            colorScheme="gray"
+            variant="link"
+            pos="absolute"
+            ml={[1, 1, 2, 3]}
+          >
+            Encoding
+          </Button>
+        </a>
+        <Drawer />
 
-      <Heading mt={2} mb={16} textAlign="center">
-        Decoding
-      </Heading>
-      <Row style={{ margin: 0, justifyContent: "center" }}>
-        <Col xs={8} sm={8} md={8} lg={4} xl={4}>
-          <HandleInput
-            setUserContent={setUserContent}
-            skip={skip}
-            setSkip={setSkip}
-            userContent={userContent}
-            setEncKey={setEncKey}
-            encKey={encKey}
-          />
-        </Col>
-        <Col xs={12} sm={12} md={12} lg={5} xl={5}>
-          <DecryptionKey
-            setEncKey={setEncKey}
-            encKey={encKey}
-            skip={skip}
-            setSkip={setSkip}
-          />
-        </Col>
-        <Col xs={8} sm={8} md={8} lg={3} xl={3}>
-          <HandleOutput encKey={encKey} userContent={userContent} skip={skip} />
-        </Col>
-      </Row>
+        <Heading mt={2} mb={16} textAlign="center">
+          Decoding
+        </Heading>
+        <Row style={{ margin: 0, justifyContent: "center" }}>
+          <Col xs={8} sm={8} md={8} lg={4} xl={4}>
+            <HandleInput
+              setUserContent={setUserContent}
+              skip={skip}
+              setSkip={setSkip}
+              userContent={userContent}
+              setEncKey={setEncKey}
+              encKey={encKey}
+            />
+          </Col>
+          <Col xs={12} sm={12} md={12} lg={5} xl={5}>
+            <DecryptionKey
+              setEncKey={setEncKey}
+              encKey={encKey}
+              skip={skip}
+              setSkip={setSkip}
+            />
+          </Col>
+          <Col xs={8} sm={8} md={8} lg={3} xl={3}>
+            <HandleOutput
+              encKey={encKey}
+              userContent={userContent}
+              skip={skip}
+            />
+          </Col>
+        </Row>
+      </Box>
     </>
   );
 };

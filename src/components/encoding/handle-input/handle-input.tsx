@@ -98,7 +98,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
 
       <Stack isInline={true} spacing={2}>
         <Box width="100%" mt={8}>
-          <Tooltip hasArrow label="clear input" bg="black" placement="top">
+          <Tooltip label="clear input" bg="black" placement="top">
             <IconButton
               aria-label="clear input"
               size="xs"
@@ -135,7 +135,6 @@ const HandleInput: React.FC<Props> = (props: Props) => {
 
             <NumberInputStepper bg="white">
               <Tooltip
-                hasArrow
                 label="forward substitute letter position"
                 bg="black"
                 placement="top"
@@ -191,7 +190,6 @@ const HandleInput: React.FC<Props> = (props: Props) => {
             )}
           </InputRightAddon>
           <Tooltip
-            hasArrow
             label={`${showEncKey ? "hide" : "view"} key`}
             bg="black"
             placement="top"
@@ -210,7 +208,6 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           <CopyToClipboard text={encKey} cursor="pointer">
             <Tooltip
               bg="black"
-              hasArrow
               shouldWrapChildren
               label="copy key"
               placement="top"

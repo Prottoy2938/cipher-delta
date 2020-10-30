@@ -112,7 +112,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           <Input
             type={showEncKey ? "text" : "password"}
             placeholder="leave empty if there's none"
-            width={["220px", "240px", "270px", "300px"]}
+            width={["220px", "240px", "270px", "200px", "300px"]}
             value={encKey.key}
             onChange={handleKeyChange}
             disabled={encKey.enabled}
@@ -143,7 +143,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
             )}
           </InputRightAddon>
           <Tooltip
-            hasArrow
+            // hasArrow
             label={`${showEncKey ? "hide" : "view"} key`}
             bg="black"
             placement="top"
@@ -161,13 +161,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           </Tooltip>
         </InputGroup>
       </Box>
-      <Image
-        mt={8}
-        src="/arrow-sketch.svg"
-        width="100%"
-        height="30px"
-        // pos={['','']}
-      />
+      <Image mt={8} src="/arrow-sketch.svg" width="100%" height="30px" />
     </Box>
   );
 };
