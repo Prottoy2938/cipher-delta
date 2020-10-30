@@ -9,6 +9,9 @@ import {
   DrawerCloseButton,
   IconButton,
   useToast,
+  DrawerFooter,
+  Box,
+  Image,
 } from "@chakra-ui/core";
 import { BsBoundingBox } from "react-icons/bs";
 import { BiKey } from "react-icons/bi";
@@ -82,6 +85,11 @@ const DashboardDrawer: React.FC = () => {
               Secure Encryption Key
             </Button>
           </DrawerBody>
+          <DrawerFooter>
+            <Box>
+              <Image src="/tree.svg" alt="tree" />
+            </Box>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
