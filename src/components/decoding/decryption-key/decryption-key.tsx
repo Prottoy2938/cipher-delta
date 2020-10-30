@@ -46,7 +46,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
         status: "info",
         description: "Using the key",
         isClosable: true,
-        duration: 3000,
+        duration: 2200,
       });
       setEncKey({ ...encKey, enabled: true });
     } else {
@@ -54,7 +54,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
         status: "warning",
         description: "Encryption key cannot be empty",
         isClosable: true,
-        duration: 3000,
+        duration: 2200,
       });
     }
   };
@@ -65,7 +65,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
       status: "warning",
       description: "Key encryption removed",
       isClosable: true,
-      duration: 3000,
+      duration: 2200,
     });
   };
 

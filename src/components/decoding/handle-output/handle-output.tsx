@@ -29,10 +29,13 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     if (encKey.enabled) {
-      const cypherText = CryptoJS.AES.decrypt(
-        substituteContent(userContent, skip * -1), //multiplying by -1 will make the process backwards, thus solving the substituted text
-        encKey.key
-      ).toString();
+      const cypherText = substituteContent(
+        CryptoJS.AES.decrypt(
+          userContent, //multiplying by -1 will make the process backwards, thus solving the substituted text
+          encKey.key
+        ).toString(CryptoJS.enc.Utf8),
+        skip * -1
+      );
       setConvertedContent(cypherText);
     } else {
       //multiplying by -1 will make the process backwards, thus solving the substituted text
@@ -46,7 +49,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
     toast({
       position: "bottom-right",
       isClosable: true,
-      duration: 20000,
+      duration: 30000,
       // eslint-disable-next-line react/display-name
       render: ({ onClose }: any) => (
         <Alert status="success" variant="left-accent">

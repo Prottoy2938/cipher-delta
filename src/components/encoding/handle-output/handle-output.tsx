@@ -28,14 +28,25 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
   const [convertedContent, setConvertedContent] = useState("");
   const toast = useToast();
 
-  const showCopyToast = (): void => {
-    toast({
-      title: "Copied",
-      description: "encryption key copied to the clip-board",
-      status: "info",
-      duration: 4000,
-      isClosable: true,
-    });
+  const handleKeyCopy = (): void => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(encKey.key);
+
+      toast({
+        title: "Copied",
+        description: "encryption key copied to the clip-board",
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        description: "something went wrong, couldn't copy",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
   };
 
   useEffect(() => {
@@ -54,7 +65,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
     toast({
       position: "bottom-right",
       isClosable: true,
-      duration: 20000,
+      duration: 30000,
       // eslint-disable-next-line react/display-name
       render: ({ onClose }: any) => (
         <Alert status="success" variant="left-accent">
@@ -69,11 +80,9 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
               <Text>
                 Encryption Key:{" "}
                 {encKey.enabled ? (
-                  <CopyToClipboard text={encKey.key}>
-                    <Button onClick={showCopyToast} size="xs">
-                      copy
-                    </Button>
-                  </CopyToClipboard>
+                  <Button onClick={handleKeyCopy} size="xs">
+                    copy
+                  </Button>
                 ) : (
                   "none"
                 )}

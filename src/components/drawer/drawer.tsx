@@ -27,14 +27,24 @@ const DashboardDrawer: React.FC = () => {
   const toast = useToast();
 
   const showCopyToast = (): void => {
-    navigator.clipboard.writeText(genRan());
-    toast({
-      title: "Copied",
-      description: "Generated new encryption key, copied to clipboard",
-      status: "info",
-      duration: 9000,
-      isClosable: true,
-    });
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(genRan());
+      toast({
+        title: "Copied",
+        description: "Generated new encryption key, copied to clipboard",
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Couldn't copy the generated code",
+        description: "Copy to clipboard not supported on this device",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
   };
 
   return (

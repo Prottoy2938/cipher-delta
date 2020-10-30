@@ -21,7 +21,15 @@ import {
 } from "@chakra-ui/core";
 import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import { GrEmergency } from "react-icons/gr";
+
+//generate random string
+const genRan = (): string => {
+  return (
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+  );
+};
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const toast = useToast();
@@ -47,13 +55,24 @@ const HandleInput: React.FC<Props> = (props: Props) => {
     setEncKey({ ...encKey, key: e.target.value });
   };
 
-  const triggerCopyToast = (): void => {
-    toast({
-      status: "info",
-      description: "Copied",
-      isClosable: true,
-      duration: 3000,
-    });
+  const handleKeyCopy = (): void => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(encKey.key);
+
+      toast({
+        status: "info",
+        description: "Copied",
+        isClosable: true,
+        duration: 1500,
+      });
+    } else {
+      toast({
+        description: "Something went wrong, couldn't copy",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
 
   const clearUserContent = (): void => {
@@ -66,7 +85,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         status: "info",
         description: "Key encryption enabled",
         isClosable: true,
-        duration: 3000,
+        duration: 2200,
       });
       setEncKey({ ...encKey, enabled: true });
     } else {
@@ -74,7 +93,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         status: "warning",
         description: "Encryption key cannot be empty",
         isClosable: true,
-        duration: 3000,
+        duration: 2200,
       });
     }
   };
@@ -85,11 +104,21 @@ const HandleInput: React.FC<Props> = (props: Props) => {
       status: "warning",
       description: "Key encryption removed",
       isClosable: true,
-      duration: 3000,
+      duration: 2200,
     });
   };
 
-  // letter spacing output
+  const handleUpdateKey = (): void => {
+    setEncKey({ enabled: true, key: genRan() });
+    toast({
+      title: "Generated new encryption key",
+      description: "Applied newly generated encryption key",
+      status: "info",
+      duration: 4000,
+      isClosable: true,
+    });
+  };
+
   return (
     <>
       <Heading as="h3" size="md" textAlign="start" mb={1}>
@@ -205,26 +234,43 @@ const HandleInput: React.FC<Props> = (props: Props) => {
               borderBottomLeftRadius={0}
             />
           </Tooltip>
-          <CopyToClipboard text={encKey} cursor="pointer">
-            <Tooltip
-              bg="black"
-              shouldWrapChildren
-              label="copy key"
-              placement="top"
-            >
-              <IconButton
-                onClick={triggerCopyToast}
-                ml={2}
-                variant="outline"
-                size="sm"
-                aria-label="copy encryption key"
-                icon={<CopyIcon />}
-                borderRadius={1}
-                borderTopLeftRadius={0}
-                borderBottomLeftRadius={0}
-              />
-            </Tooltip>
-          </CopyToClipboard>
+
+          <Tooltip
+            bg="black"
+            shouldWrapChildren
+            label="copy key"
+            placement="top"
+          >
+            <IconButton
+              onClick={handleKeyCopy}
+              ml={2}
+              variant="outline"
+              size="sm"
+              aria-label="copy encryption key"
+              icon={<CopyIcon />}
+              borderRadius={1}
+              borderTopLeftRadius={0}
+              borderBottomLeftRadius={0}
+            />
+          </Tooltip>
+
+          <Tooltip
+            label="generate new key and apply"
+            bg="black"
+            placement="top"
+          >
+            <IconButton
+              ml={4}
+              variant="outline"
+              size="sm"
+              aria-label="generate new key and apply"
+              icon={<GrEmergency />}
+              onClick={handleUpdateKey}
+              borderRadius={1}
+              borderTopLeftRadius={0}
+              borderBottomLeftRadius={0}
+            />
+          </Tooltip>
         </InputGroup>
       </Box>
     </>

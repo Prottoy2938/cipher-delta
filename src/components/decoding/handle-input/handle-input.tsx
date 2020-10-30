@@ -21,7 +21,6 @@ import {
 } from "@chakra-ui/core";
 import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Row, Col } from "react-grid-system";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
@@ -54,7 +53,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
       status: "info",
       description: "Copied",
       isClosable: true,
-      duration: 3000,
+      duration: 2200,
     });
   };
 
@@ -68,7 +67,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         status: "info",
         description: "Key encryption enabled",
         isClosable: true,
-        duration: 3000,
+        duration: 2200,
       });
       setEncKey({ ...encKey, enabled: true });
     } else {
@@ -76,7 +75,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         status: "warning",
         description: "Encryption key cannot be empty",
         isClosable: true,
-        duration: 3000,
+        duration: 2200,
       });
     }
   };
@@ -87,7 +86,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
       status: "warning",
       description: "Key encryption removed",
       isClosable: true,
-      duration: 3000,
+      duration: 2200,
     });
   };
 
