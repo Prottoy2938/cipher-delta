@@ -24,29 +24,21 @@ import CryptoJS from "crypto-js";
 const HandleOutput: React.FC<Props> = (props: Props) => {
   const { userContent, skip, encKey } = props;
 
-  const [viewAs, setViewAs] = useState("converted");
   const [convertedContent, setConvertedContent] = useState("");
   const toast = useToast();
 
-  const showCopyToast = (): void => {
-    toast({
-      title: "Copied",
-      description: "encryption key copied to the clip-board",
-      status: "info",
-      duration: 4000,
-      isClosable: true,
-    });
-  };
-
   useEffect(() => {
     if (encKey.enabled) {
-      const cypherText = CryptoJS.AES.encrypt(
-        substituteContent(userContent, skip),
+      const cypherText = CryptoJS.AES.decrypt(
+        substituteContent(userContent, skip * -1), //multiplying by -1 will make the process backwards, thus solving the substituted text
         encKey.key
       ).toString();
       setConvertedContent(cypherText);
     } else {
-      setConvertedContent(substituteContent(userContent, skip));
+      //multiplying by -1 will make the process backwards, thus solving the substituted text
+      const cypherText = substituteContent(userContent, skip * -1);
+      console.log(cypherText);
+      setConvertedContent(cypherText);
     }
   }, [userContent, encKey.enabled, encKey.key, skip]);
 
@@ -56,7 +48,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       isClosable: true,
       duration: 20000,
       // eslint-disable-next-line react/display-name
-      render: () => (
+      render: ({ onClose }: any) => (
         <Alert status="success" variant="left-accent">
           <AlertIcon />
           <Box flex="1">
@@ -65,7 +57,12 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
               <Text mb={3}>Content copied to clipboard</Text>
             </AlertDescription>
           </Box>
-          <CloseButton position="absolute" right="8px" top="8px" />
+          <CloseButton
+            onClick={onClose}
+            position="absolute"
+            right="8px"
+            top="8px"
+          />
         </Alert>
       ),
     });
@@ -76,10 +73,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
         Plain Outcome
       </Heading>
 
-      <CopyToClipboard
-        text={viewAs === "converted" ? convertedContent : userContent}
-        cursor="pointer"
-      >
+      <CopyToClipboard text={convertedContent} cursor="pointer">
         <Box
           onClick={triggerCopyToast}
           cursor="text"
@@ -94,7 +88,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           padding={5}
           overflow="auto"
         >
-          {userContent}
+          {convertedContent}
         </Box>
       </CopyToClipboard>
     </>

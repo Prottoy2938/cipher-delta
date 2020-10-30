@@ -56,7 +56,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       isClosable: true,
       duration: 20000,
       // eslint-disable-next-line react/display-name
-      render: () => (
+      render: ({ onClose }: any) => (
         <Alert status="success" variant="left-accent">
           <AlertIcon />
           <Box flex="1">
@@ -80,7 +80,12 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
               </Text>
             </AlertDescription>
           </Box>
-          <CloseButton position="absolute" right="8px" top="8px" />
+          <CloseButton
+            onClick={onClose}
+            position="absolute"
+            right="8px"
+            top="8px"
+          />
         </Alert>
       ),
     });
