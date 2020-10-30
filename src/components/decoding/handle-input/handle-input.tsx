@@ -22,7 +22,7 @@ import {
 import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import Image from "next/image";
+import { Row, Col } from "react-grid-system";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const toast = useToast();
@@ -94,13 +94,11 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   // letter spacing output
   return (
     <>
-      <Heading as="h3" size="md" textAlign="start" mb={1}>
+      <Heading as="h3" size="md" textAlign="start">
         Cipher Text
       </Heading>
 
-      <Stack isInline={true} spacing={2}>
-        <Box width="100%">
-          <Tooltip hasArrow label="clear input" bg="black" placement="top">
+      {/* <Tooltip hasArrow label="clear input" bg="black" placement="top">
             <IconButton
               aria-label="clear input"
               size="xs"
@@ -111,98 +109,17 @@ const HandleInput: React.FC<Props> = (props: Props) => {
               onClick={clearUserContent}
               icon={<CloseIcon />}
             />
-          </Tooltip>
-          <Textarea
-            value={userContent}
-            onChange={(e) => setUserContent(e.target.value)}
-            autoFocus
-            placeholder="your input"
-            overflow="auto"
-            height="500px"
-            width="100%"
-          />
-        </Box>
-
-        <Box>
-          <Image src="/arrow-sketch.svg" width="200px" height="50px" />
-        </Box>
-      </Stack>
-      <Box mt={2}>
-        <InputGroup size="sm">
-          <InputLeftAddon>optional</InputLeftAddon>
-          <Input
-            type={showEncKey ? "text" : "password"}
-            placeholder="encryption key"
-            width="250px"
-            value={encKey.key}
-            onChange={handleKeyChange}
-            disabled={encKey.enabled}
-          />
-          <InputRightAddon mr={3} padding="0">
-            {encKey.enabled ? (
-              <Button
-                borderRadius={0}
-                height="100%"
-                width="130px"
-                size="sm"
-                fontWeight="regular"
-                onClick={removeEncryption}
-              >
-                remove encryption
-              </Button>
-            ) : (
-              <Button
-                borderRadius={0}
-                height="100%"
-                width="60px"
-                size="sm"
-                fontWeight="regular"
-                onClick={handleEncryptContent}
-              >
-                use
-              </Button>
-            )}
-          </InputRightAddon>
-          <Tooltip
-            hasArrow
-            label={`${showEncKey ? "hide" : "view"} key`}
-            bg="black"
-            placement="top"
-          >
-            <IconButton
-              variant="outline"
-              size="sm"
-              aria-label="view key"
-              icon={showEncKey ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-              onClick={(): void => setShowEncKey(!showEncKey)}
-              borderRadius={1}
-              borderTopLeftRadius={0}
-              borderBottomLeftRadius={0}
-            />
-          </Tooltip>
-          <CopyToClipboard text={encKey} cursor="pointer">
-            <Tooltip
-              bg="black"
-              hasArrow
-              shouldWrapChildren
-              label="copy key"
-              placement="top"
-            >
-              <IconButton
-                onClick={triggerCopyToast}
-                ml={2}
-                variant="outline"
-                size="sm"
-                aria-label="copy encryption key"
-                icon={<CopyIcon />}
-                borderRadius={1}
-                borderTopLeftRadius={0}
-                borderBottomLeftRadius={0}
-              />
-            </Tooltip>
-          </CopyToClipboard>
-        </InputGroup>
-      </Box>
+          </Tooltip> */}
+      <Textarea
+        mt={10}
+        value={userContent}
+        onChange={(e) => setUserContent(e.target.value)}
+        autoFocus
+        placeholder="your input"
+        overflow="auto"
+        height="400px"
+        width="100%"
+      />
     </>
   );
 };

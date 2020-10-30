@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import HandleInput from "../src/components/decoding/handle-input/handle-input";
-import HandleOutput from "../src/components/encoding/handle-output/handle-output";
+import HandleOutput from "../src/components/decoding/handle-output/handle-output";
 import Head from "next/head";
 import { Row, Col } from "react-grid-system";
 import { Box, Heading, Button } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import Image from "next/image";
 
 const Decoding: React.FC = () => {
   const [userContent, setUserContent] = useState("");
@@ -43,30 +44,29 @@ const Decoding: React.FC = () => {
       </a>
       <Drawer />
 
-      <Box textAlign="center" margin="0 auto">
-        <Heading mt={2} mb={16}>
-          Decoding
-        </Heading>
-        <Row style={{ margin: 0 }}>
-          <Col xs={12} sm={12} md={12} lg={7} xl={7}>
-            <HandleInput
-              setUserContent={setUserContent}
-              skip={skip}
-              setSkip={setSkip}
-              userContent={userContent}
-              setEncKey={setEncKey}
-              encKey={encKey}
-            />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={5} xl={5}>
-            <HandleOutput
-              encKey={encKey}
-              userContent={userContent}
-              skip={skip}
-            />
-          </Col>
-        </Row>
-      </Box>
+      <Heading mt={2} mb={16} textAlign="center">
+        Decoding
+      </Heading>
+      <Row style={{ margin: 0, justifyContent: "center" }}>
+        <Col xs={8} sm={8} md={8} lg={4} xl={4}>
+          <HandleInput
+            setUserContent={setUserContent}
+            skip={skip}
+            setSkip={setSkip}
+            userContent={userContent}
+            setEncKey={setEncKey}
+            encKey={encKey}
+          />
+        </Col>
+        <Col xs={12} sm={12} md={12} lg={5} xl={5}>
+          <Box>
+            <Image src="/arrow-sketch.svg" width="200px" height="50px" />
+          </Box>
+        </Col>
+        <Col xs={8} sm={8} md={8} lg={3} xl={3}>
+          <HandleOutput encKey={encKey} userContent={userContent} skip={skip} />
+        </Col>
+      </Row>
     </>
   );
 };
