@@ -7,11 +7,12 @@ import { Box, Heading, Button } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import Image from "next/image";
+import DecryptionKey from "../src/components/decoding/decryption-key/decryption-key";
 
 const Decoding: React.FC = () => {
   const [userContent, setUserContent] = useState("");
   const [encKey, setEncKey] = useState({ key: "", enabled: false });
-  const [skip, setSkip] = useState(1);
+  const [skip, setSkip] = useState(0);
   return (
     <>
       <Head>
@@ -59,9 +60,12 @@ const Decoding: React.FC = () => {
           />
         </Col>
         <Col xs={12} sm={12} md={12} lg={5} xl={5}>
-          <Box>
-            <Image src="/arrow-sketch.svg" width="200px" height="50px" />
-          </Box>
+          <DecryptionKey
+            setEncKey={setEncKey}
+            encKey={encKey}
+            skip={skip}
+            setSkip={setSkip}
+          />
         </Col>
         <Col xs={8} sm={8} md={8} lg={3} xl={3}>
           <HandleOutput encKey={encKey} userContent={userContent} skip={skip} />
