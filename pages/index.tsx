@@ -27,11 +27,11 @@ const Home: React.FC = () => {
           property="og:description"
           content="A web application that helps encode and decode plain content"
         />
-
         <meta
           property="og:image"
           content="https://cipher-delta.edrini.xyz/logo-img-1200.png"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
           rel="stylesheet"

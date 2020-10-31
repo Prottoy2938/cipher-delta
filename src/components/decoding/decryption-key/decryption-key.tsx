@@ -76,6 +76,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           max={25}
           min={-25}
           w="70px"
+          h="30px"
           keepWithinRange={false}
           clampValueOnBlur={false}
           onChange={handleSkipChange}

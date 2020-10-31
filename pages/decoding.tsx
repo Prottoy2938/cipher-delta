@@ -21,7 +21,7 @@ const Decoding: React.FC = () => {
         <meta property="og:title" content="Decoding - Cipher Delta" />
         <meta name="description" content="Decode cipher content" />
         <meta property="og:description" content="Decode cipher content" />
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           property="og:image"
           content="https://cipher-delta.edrini.xyz/logo-img-1200.png"

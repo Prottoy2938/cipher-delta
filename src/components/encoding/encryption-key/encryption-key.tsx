@@ -131,6 +131,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
           max={25}
           min={-25}
           w="70px"
+          h="30px"
           keepWithinRange={false}
           clampValueOnBlur={false}
           onChange={handleSkipChange}
@@ -235,7 +236,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             )}
           </InputRightAddon>
         </InputGroup>
-        <Box mt={3}>
+        <Box mt={[6, 6, 6, 3]}>
           <Tooltip
             label={`${showEncKey ? "hide" : "view"} key`}
             bg="black"
