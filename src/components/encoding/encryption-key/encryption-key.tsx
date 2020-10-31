@@ -16,8 +16,18 @@ import {
   Button,
   Image,
   Text,
+  Popover,
+  PopoverTrigger,
+  PopoverArrow,
+  PopoverContent,
+  PopoverBody,
+  PopoverHeader,
+  PopoverCloseButton,
+  Kbd,
+  Code,
+  Link,
 } from "@chakra-ui/core";
-import { CopyIcon } from "@chakra-ui/icons";
+import { CopyIcon, InfoIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { GrEmergency } from "react-icons/gr";
 import { Props } from "./encryption-key.model";
@@ -84,7 +94,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     } else {
       toast({
         status: "warning",
-        description: "Encryption key cannot be empty",
+        description: "Encryption key is empty",
         isClosable: true,
         duration: 2200,
       });
@@ -147,7 +157,40 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             </Tooltip>
           </NumberInputStepper>
         </NumberInput>
+        <Popover>
+          <PopoverTrigger>
+            <IconButton
+              bg="white"
+              size="sm"
+              ml={3}
+              aria-label="whats substitute letter position"
+              icon={<InfoIcon />}
+            />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverHeader>Substitute letter position</PopoverHeader>
+            <PopoverBody textAlign="start">
+              Set the substitute letter position. For example, if the position
+              is in <Kbd>5</Kbd>, then for the letter <Code>a</Code> it would be
+              replaced by the letter <Code>e</Code>, and for the letter{" "}
+              <Code>b</Code> it would be replaced by the letter <Code>f</Code>{" "}
+              and the pattern will continue on all letters respectively.
+              <Text mt={3}>
+                Learn more about{" "}
+                <Link
+                  color="purple.700"
+                  href="https://en.wikipedia.org/wiki/Substitution_cipher"
+                >
+                  substitution cipher
+                </Link>
+              </Text>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
       </Box>
+
       <Box
         display="grid"
         justifyContent="center"
@@ -173,6 +216,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
                 width="130px"
                 size="sm"
                 fontWeight="regular"
+                type="button"
                 onClick={removeEncryption}
               >
                 remove encryption

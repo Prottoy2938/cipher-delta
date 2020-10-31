@@ -50,7 +50,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
     } else {
       toast({
         status: "warning",
-        description: "Encryption key cannot be empty",
+        description: "Encryption key is empty",
         isClosable: true,
         duration: 2200,
       });
