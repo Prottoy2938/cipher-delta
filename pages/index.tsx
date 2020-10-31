@@ -6,6 +6,7 @@ import { Row, Col } from "react-grid-system";
 import { Box, Heading, Button } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
+import EncryptionKey from "../src/components/encoding/encryption-key/encryption-key";
 
 const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");
@@ -53,18 +54,22 @@ const Home: React.FC = () => {
         <Heading mt={2} mb={16}>
           Encoding
         </Heading>
-        <Row style={{ margin: 0 }}>
-          <Col xs={12} sm={12} md={12} lg={7} xl={7}>
+        <Row style={{ margin: 0, justifyContent: "center" }}>
+          <Col xs={8} sm={8} md={8} lg={4} xl={4}>
             <HandleInput
               setUserContent={setUserContent}
-              skip={skip}
-              setSkip={setSkip}
               userContent={userContent}
-              setEncKey={setEncKey}
-              encKey={encKey}
             />
           </Col>
           <Col xs={12} sm={12} md={12} lg={5} xl={5}>
+            <EncryptionKey
+              setEncKey={setEncKey}
+              encKey={encKey}
+              skip={skip}
+              setSkip={setSkip}
+            />
+          </Col>
+          <Col xs={8} sm={8} md={8} lg={3} xl={3}>
             <HandleOutput
               encKey={encKey}
               userContent={userContent}

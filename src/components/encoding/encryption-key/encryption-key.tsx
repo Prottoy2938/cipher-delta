@@ -20,10 +20,24 @@ import {
   Image,
   Text,
 } from "@chakra-ui/core";
-import { Props } from "./decryption-key.model";
+import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { GrEmergency } from "react-icons/gr";
+import { Props } from "./encryption-key.model";
 
-const DecryptionKey: React.FC<Props> = (props: Props) => {
+//generate random string
+const genRan = (length: number): string => {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
+
+const EncryptionKey: React.FC<Props> = (props: Props) => {
   const toast = useToast();
 
   const { setEncKey, encKey, skip, setSkip } = props;
@@ -40,12 +54,32 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
     setEncKey({ ...encKey, key: e.target.value });
   };
 
+  const handleKeyCopy = (): void => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(encKey.key);
+
+      toast({
+        status: "info",
+        description: "Copied",
+        isClosable: true,
+        duration: 1500,
+      });
+    } else {
+      toast({
+        description: "Something went wrong, couldn't copy",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
   const handleEncryptContent = (e: React.FormEvent<HTMLDivElement>): void => {
     e.preventDefault();
     if (encKey.key.length) {
       toast({
         status: "info",
-        description: "Using the key",
+        description: "Key encryption enabled",
         isClosable: true,
         duration: 2200,
       });
@@ -67,6 +101,17 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
       description: "Key encryption removed",
       isClosable: true,
       duration: 2200,
+    });
+  };
+
+  const handleUpdateKey = (): void => {
+    setEncKey({ enabled: true, key: genRan(18) });
+    toast({
+      title: "Generated new encryption key",
+      description: "Applied newly generated encryption key",
+      status: "info",
+      duration: 4000,
+      isClosable: true,
     });
   };
 
@@ -107,19 +152,17 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
         </NumberInput>
       </Box>
       <Box
-        display="grid"
-        justifyContent="center"
-        mt={5}
+        mt={2}
+        className="encryption-inp-cn"
         as="form"
         onSubmit={handleEncryptContent}
       >
         <InputGroup size="sm">
-          <InputLeftAddon>encryption key</InputLeftAddon>
-
+          <InputLeftAddon>optional</InputLeftAddon>
           <Input
             type="text"
-            placeholder="leave empty if there's none"
-            width={["220px", "240px", "270px", "200px", "300px"]}
+            placeholder="encryption key"
+            width="250px"
             value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
             onChange={handleKeyChange}
             disabled={encKey.enabled}
@@ -129,12 +172,12 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
               <Button
                 borderRadius={0}
                 height="100%"
-                width="180px"
+                width="130px"
                 size="sm"
                 fontWeight="regular"
                 onClick={removeEncryption}
               >
-                remove key
+                remove encryption
               </Button>
             ) : (
               <Button
@@ -145,12 +188,11 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
                 fontWeight="regular"
                 type="submit"
               >
-                apply
+                use
               </Button>
             )}
           </InputRightAddon>
           <Tooltip
-            // hasArrow
             label={`${showEncKey ? "hide" : "view"} key`}
             bg="black"
             placement="top"
@@ -166,6 +208,43 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
               borderBottomLeftRadius={0}
             />
           </Tooltip>
+
+          <Tooltip
+            bg="black"
+            shouldWrapChildren
+            label="copy key"
+            placement="top"
+          >
+            <IconButton
+              onClick={handleKeyCopy}
+              ml={2}
+              variant="outline"
+              size="sm"
+              aria-label="copy encryption key"
+              icon={<CopyIcon />}
+              borderRadius={1}
+              borderTopLeftRadius={0}
+              borderBottomLeftRadius={0}
+            />
+          </Tooltip>
+
+          <Tooltip
+            label="generate new key and apply"
+            bg="black"
+            placement="top"
+          >
+            <IconButton
+              ml={4}
+              variant="outline"
+              size="sm"
+              aria-label="generate new key and apply"
+              icon={<GrEmergency />}
+              onClick={handleUpdateKey}
+              borderRadius={1}
+              borderTopLeftRadius={0}
+              borderBottomLeftRadius={0}
+            />
+          </Tooltip>
         </InputGroup>
       </Box>
       <Image mt={8} src="/arrow-sketch.svg" width="100%" height="30px" />
@@ -173,4 +252,4 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default DecryptionKey;
+export default EncryptionKey;

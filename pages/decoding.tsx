@@ -6,7 +6,6 @@ import { Row, Col } from "react-grid-system";
 import { Box, Heading, Button } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import Image from "next/image";
 import DecryptionKey from "../src/components/decoding/decryption-key/decryption-key";
 
 const Decoding: React.FC = () => {
@@ -53,11 +52,7 @@ const Decoding: React.FC = () => {
           <Col xs={8} sm={8} md={8} lg={4} xl={4}>
             <HandleInput
               setUserContent={setUserContent}
-              skip={skip}
-              setSkip={setSkip}
               userContent={userContent}
-              setEncKey={setEncKey}
-              encKey={encKey}
             />
           </Col>
           <Col xs={12} sm={12} md={12} lg={5} xl={5}>
