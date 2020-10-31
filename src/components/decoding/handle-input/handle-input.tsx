@@ -20,7 +20,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   // letter spacing output
   return (
     <>
-      <Heading as="h3" size="md" textAlign="start">
+      <Heading as="h3" size="md" textAlign="start" mb={[3, 4, 5, 10]}>
         Cipher Text
       </Heading>
 
@@ -31,13 +31,12 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           pos="absolute"
           zIndex={10}
           right={5}
-          top={20}
+          top={12}
           onClick={clearUserContent}
           icon={<CloseIcon />}
         />
       </Tooltip>
       <Textarea
-        mt={10}
         value={userContent}
         onChange={handleChange}
         autoFocus

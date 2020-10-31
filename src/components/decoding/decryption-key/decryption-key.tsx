@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/core";
 import { Props } from "./decryption-key.model";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { isMobile } from "react-device-detect";
 
 const DecryptionKey: React.FC<Props> = (props: Props) => {
   const toast = useToast();
@@ -112,7 +113,9 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
         onSubmit={handleEncryptContent}
       >
         <InputGroup size="sm">
-          <InputLeftAddon>encryption key</InputLeftAddon>
+          <InputLeftAddon pl={[1, 2, 3, 4]} pr={[1, 2, 3, 4]}>
+            {isMobile ? "enc. key" : "encryption key"}
+          </InputLeftAddon>
 
           <Input
             type="text"
@@ -127,12 +130,11 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
               <Button
                 borderRadius={0}
                 height="100%"
-                width="180px"
                 size="sm"
                 fontWeight="regular"
                 onClick={removeEncryption}
               >
-                remove key
+                {isMobile ? "remove" : "remove key"}
               </Button>
             ) : (
               <Button
@@ -147,6 +149,27 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
               </Button>
             )}
           </InputRightAddon>
+          {!isMobile && (
+            <Tooltip
+              // hasArrow
+              label={`${showEncKey ? "hide" : "view"} key`}
+              bg="black"
+              placement="top"
+            >
+              <IconButton
+                variant="outline"
+                size="sm"
+                aria-label="view key"
+                icon={showEncKey ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                onClick={(): void => setShowEncKey(!showEncKey)}
+                borderRadius={1}
+                borderTopLeftRadius={0}
+                borderBottomLeftRadius={0}
+              />
+            </Tooltip>
+          )}
+        </InputGroup>
+        {isMobile && (
           <Tooltip
             // hasArrow
             label={`${showEncKey ? "hide" : "view"} key`}
@@ -154,6 +177,9 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
             placement="top"
           >
             <IconButton
+              margin="0 auto"
+              mt={4}
+              width="35px"
               variant="outline"
               size="sm"
               aria-label="view key"
@@ -164,7 +190,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
               borderBottomLeftRadius={0}
             />
           </Tooltip>
-        </InputGroup>
+        )}
       </Box>
       <Image mt={8} src="/arrow-sketch.svg" width="100%" height="30px" />
     </Box>

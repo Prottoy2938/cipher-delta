@@ -25,6 +25,7 @@ import {
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
 import { QuestionOutlineIcon } from "@chakra-ui/icons";
+import { isMobile } from "react-device-detect";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
   const { userContent, skip, encKey } = props;
@@ -52,7 +53,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
 
   const triggerCopyToast = (): void => {
     toast({
-      position: "bottom-right",
+      position: isMobile ? "bottom" : "bottom-right",
       isClosable: true,
       duration: 30000,
       // eslint-disable-next-line react/display-name
@@ -77,66 +78,72 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
   };
   return (
     <>
-      <Heading as="h3" size="md" textAlign="start" mt={[24, 24, 24, 0]}>
+      <Heading
+        as="h3"
+        size="md"
+        textAlign="start"
+        mt={[24, 24, 24, 0]}
+        mb={[3, 4, 5, 10]}
+      >
         Plain Outcome
       </Heading>
-
-      <CopyToClipboard text={convertedContent} cursor="pointer">
-        <Box
-          onClick={triggerCopyToast}
-          cursor="text"
-          background="#f5f5f5"
-          m="0 auto"
-          mt={10}
-          width="100%"
-          height="350px"
-          border="2px solid #e8e8e8"
-          borderRadius={2}
-          textAlign="start"
-          padding={5}
-          overflow="auto"
-        >
-          {convertedContent}
-        </Box>
-      </CopyToClipboard>
-      {convertedContent.length ? (
-        <Box mt={7} textAlign="end">
-          <Popover>
-            <PopoverTrigger>
-              <IconButton
-                bg="white"
-                size="sm"
-                aria-label="Info on getting expected output"
-                icon={<QuestionOutlineIcon />}
-              />
-            </PopoverTrigger>
-            <PopoverContent textAlign="center">
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverHeader>Not getting expected output?</PopoverHeader>
-              <PopoverBody textAlign="start">
-                Make sure you've entered the correct letter substitution
-                position.
-                <Text mt={3}>
-                  If the content is encrypted using a key, then also make sure
-                  that you've entered the right key.
-                </Text>
-                <Text>
-                  Note that, currently for key encryption or decryption this
-                  application only uses{" "}
-                  <Link
-                    color="purple.700"
-                    href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
-                  >
-                    <Kbd>AES</Kbd>
-                  </Link>{" "}
-                  algorithm.
-                </Text>
-              </PopoverBody>
-            </PopoverContent>
-          </Popover>
-        </Box>
-      ) : null}
+      <Box mb={[20, 20, 20, 0]}>
+        <CopyToClipboard text={convertedContent} cursor="pointer">
+          <Box
+            onClick={triggerCopyToast}
+            cursor="text"
+            background="#f5f5f5"
+            m="0 auto"
+            width="100%"
+            height="350px"
+            border="2px solid #e8e8e8"
+            borderRadius={2}
+            textAlign="start"
+            padding={5}
+            overflow="auto"
+          >
+            {convertedContent}
+          </Box>
+        </CopyToClipboard>
+        {convertedContent.length ? (
+          <Box mt={7} textAlign="end">
+            <Popover>
+              <PopoverTrigger>
+                <IconButton
+                  bg="white"
+                  size="sm"
+                  aria-label="Info on getting expected output"
+                  icon={<QuestionOutlineIcon />}
+                />
+              </PopoverTrigger>
+              <PopoverContent textAlign="center">
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader>Not getting expected output?</PopoverHeader>
+                <PopoverBody textAlign="start">
+                  Make sure you've entered the correct letter substitution
+                  position.
+                  <Text mt={3}>
+                    If the content is encrypted using a key, then also make sure
+                    that you've entered the right key.
+                  </Text>
+                  <Text>
+                    Note that, currently for key encryption or decryption this
+                    application only uses{" "}
+                    <Link
+                      color="purple.700"
+                      href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
+                    >
+                      <Kbd>AES</Kbd>
+                    </Link>{" "}
+                    algorithm.
+                  </Text>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+          </Box>
+        ) : null}
+      </Box>
     </>
   );
 };

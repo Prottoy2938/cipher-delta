@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/core";
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
+import { isMobile } from "react-device-detect";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
   const { userContent, skip, encKey } = props;
@@ -62,7 +63,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
 
   const triggerCopyToast = (): void => {
     toast({
-      position: "bottom-right",
+      position: isMobile ? "bottom" : "bottom-right",
       isClosable: true,
       duration: 30000,
       // eslint-disable-next-line react/display-name
@@ -105,7 +106,13 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <Heading as="h3" size="md" textAlign="start" mt={[24, 24, 24, 0]}>
+      <Heading
+        as="h3"
+        size="md"
+        textAlign="start"
+        mt={[24, 24, 24, 0]}
+        mb={[3, 4, 5, 10]}
+      >
         {/* Cipher Outcome */}
         Cipher Text
       </Heading>
@@ -119,7 +126,6 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           cursor="text"
           background="#f5f5f5"
           m="0 auto"
-          mt={10}
           width="100%"
           height="350px"
           border="2px solid #e8e8e8"
@@ -136,7 +142,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
         mt={5}
         value={viewAs}
         onChange={handleChange}
-        mb={[16, 16, 16, 0]}
+        mb={[20, 20, 20, 0]}
       >
         <Stack spacing={5} direction="row">
           <Radio colorScheme="gray" value="converted">

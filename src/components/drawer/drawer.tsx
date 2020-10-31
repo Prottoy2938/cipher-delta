@@ -64,7 +64,7 @@ const DashboardDrawer: React.FC = () => {
         ref={btnRef}
         onClick={onOpen}
         pos="absolute"
-        right="20px"
+        right={["5px", "8px", "12px", "20px"]}
         top="5px"
         color="grey"
       />

@@ -31,6 +31,7 @@ import { CopyIcon, InfoIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { GrEmergency } from "react-icons/gr";
 import { Props } from "./encryption-key.model";
+import { isMobile } from "react-device-detect";
 
 //generate random string
 const genRan = (length: number): string => {
@@ -200,10 +201,16 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
         onSubmit={handleEncryptContent}
       >
         <InputGroup size="sm">
-          <InputLeftAddon>optional</InputLeftAddon>
+          {!isMobile && (
+            <InputLeftAddon pl={[1, 2, 3, 4]} pr={[1, 2, 3, 4]}>
+              optional
+            </InputLeftAddon>
+          )}
           <Input
             type="text"
-            placeholder="encryption key"
+            placeholder={
+              isMobile ? "encryption key (optional)" : "encryption key"
+            }
             width="250px"
             value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
             onChange={handleKeyChange}
@@ -214,13 +221,14 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
               <Button
                 borderRadius={0}
                 height="100%"
-                width="130px"
+                pl={[1, 2, 3, 4]}
+                pr={[1, 2, 3, 4]}
                 size="sm"
                 fontWeight="regular"
                 type="button"
                 onClick={removeEncryption}
               >
-                remove encryption
+                {isMobile ? "remove" : "remove encryption"}
               </Button>
             ) : (
               <Button

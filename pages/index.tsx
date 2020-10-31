@@ -44,6 +44,8 @@ const Home: React.FC = () => {
           variant="link"
           pos="absolute"
           ml={[1, 1, 2, 3]}
+          bottom={["5px", "5px", "5px", "auto"]}
+          right={["5px", "5px", "5px", "auto"]}
         >
           Decoding
         </Button>

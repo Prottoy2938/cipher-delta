@@ -31,20 +31,21 @@ const Decoding: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <Box mb="120px">
-        <a href="/">
-          <Button
-            leftIcon={<ArrowBackIcon />}
-            colorScheme="gray"
-            variant="link"
-            pos="absolute"
-            ml={[1, 1, 2, 3]}
-          >
-            Encoding
-          </Button>
-        </a>
+      <a href="/">
+        <Button
+          leftIcon={<ArrowBackIcon />}
+          colorScheme="gray"
+          variant="link"
+          pos="absolute"
+          ml={[1, 1, 2, 3]}
+          bottom={["5px", "5px", "5px", "auto"]}
+          right={["5px", "5px", "5px", "auto"]}
+        >
+          Encoding
+        </Button>
+      </a>
+      <Box>
         <Drawer />
-
         <Heading mt={2} mb={16} textAlign="center">
           Decoding
         </Heading>
