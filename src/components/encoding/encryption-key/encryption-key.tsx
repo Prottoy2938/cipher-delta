@@ -245,7 +245,13 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
           </Tooltip>
         </InputGroup>
       </Box>
-      <Image mt={8} src="/arrow-sketch.svg" width="100%" height="30px" />
+      <Image
+        src="/line-arrow-sketch.svg"
+        width="300px"
+        m="0 auto"
+        mt={8}
+        height="30px"
+      />
     </Box>
   );
 };
