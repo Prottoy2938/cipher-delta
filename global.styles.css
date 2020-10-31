@@ -53,3 +53,8 @@ div .user-input-field input {
 div .encryption-inp-cn {
   width: calc(100% - 70px);
 }
+
+div .grid-row {
+  margin: 0 !important;
+  justify-content: center !important;
+}

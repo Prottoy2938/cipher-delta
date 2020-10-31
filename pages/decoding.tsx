@@ -48,8 +48,8 @@ const Decoding: React.FC = () => {
         <Heading mt={2} mb={16} textAlign="center">
           Decoding
         </Heading>
-        <Row style={{ margin: 0, justifyContent: "center" }}>
-          <Col xs={8} sm={8} md={8} lg={4} xl={4}>
+        <Row className="grid-row">
+          <Col xs={12} sm={12} md={12} lg={4} xl={4}>
             <HandleInput
               setUserContent={setUserContent}
               userContent={userContent}
@@ -63,7 +63,7 @@ const Decoding: React.FC = () => {
               setSkip={setSkip}
             />
           </Col>
-          <Col xs={8} sm={8} md={8} lg={3} xl={3}>
+          <Col xs={12} sm={12} md={12} lg={3} xl={3}>
             <HandleOutput
               encKey={encKey}
               userContent={userContent}
