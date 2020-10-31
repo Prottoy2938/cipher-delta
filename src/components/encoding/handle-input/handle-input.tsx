@@ -1,44 +1,51 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Props } from "./handle-input.model";
-import { Box, Heading, IconButton, Tooltip, Textarea } from "@chakra-ui/core";
+import { Heading, IconButton, Tooltip, Textarea } from "@chakra-ui/core";
 import { CloseIcon } from "@chakra-ui/icons";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const { setUserContent, userContent } = props;
 
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
   const clearUserContent = (): void => {
     setUserContent("");
+    inputRef.current.focus();
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    setUserContent(e.target.value);
   };
 
   return (
     <>
-      <Heading as="h3" size="md" textAlign="start" mb={1}>
+      <Heading as="h3" size="md" textAlign="start">
         Plain Text
       </Heading>
 
-      <Box width="100%" mt={8}>
-        <Tooltip label="clear input" bg="black" placement="top">
-          <IconButton
-            aria-label="clear input"
-            size="xs"
-            pos="absolute"
-            zIndex={10}
-            right={28}
-            top={20}
-            onClick={clearUserContent}
-            icon={<CloseIcon />}
-          />
-        </Tooltip>
-        <Textarea
-          value={userContent}
-          onChange={(e) => setUserContent(e.target.value)}
-          autoFocus
-          placeholder="your input"
-          overflow="auto"
-          height="500px"
-          width="100%"
+      <Tooltip label="clear input" bg="black" placement="top">
+        <IconButton
+          aria-label="clear input"
+          size="xs"
+          pos="absolute"
+          zIndex={10}
+          right={5}
+          top={20}
+          onClick={clearUserContent}
+          icon={<CloseIcon />}
         />
-      </Box>
+      </Tooltip>
+      <Textarea
+        mt={10}
+        value={userContent}
+        onChange={handleChange}
+        autoFocus
+        placeholder="your input"
+        overflow="auto"
+        height="400px"
+        width="100%"
+        ref={inputRef}
+      />
     </>
   );
 };

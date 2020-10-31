@@ -5,7 +5,6 @@ import {
   useToast,
   Box,
   Heading,
-  Tooltip,
   RadioGroup,
   Radio,
   Stack,
@@ -99,6 +98,11 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       ),
     });
   };
+
+  const handleChange = (e: any) => {
+    setViewAs(e);
+  };
+
   return (
     <>
       <Heading as="h3" size="md" textAlign="start" mt={[24, 24, 24, 0]}>
@@ -117,7 +121,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           m="0 auto"
           mt={10}
           width="100%"
-          height="500px"
+          height="350px"
           border="2px solid #e8e8e8"
           borderRadius={2}
           textAlign="start"
@@ -131,7 +135,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
         float="right"
         mt={5}
         value={viewAs}
-        onChange={(e: any): void => setViewAs(e)}
+        onChange={handleChange}
         mb={[16, 16, 16, 0]}
       >
         <Stack spacing={5} direction="row">

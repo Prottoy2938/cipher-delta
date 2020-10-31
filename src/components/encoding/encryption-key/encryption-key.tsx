@@ -6,21 +6,18 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  Stack,
-  Heading,
   IconButton,
   Tooltip,
   Input,
   InputGroup,
   InputLeftAddon,
   useToast,
-  Textarea,
   InputRightAddon,
   Button,
   Image,
   Text,
 } from "@chakra-ui/core";
-import { CloseIcon, CopyIcon } from "@chakra-ui/icons";
+import { CopyIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { GrEmergency } from "react-icons/gr";
 import { Props } from "./encryption-key.model";
@@ -152,8 +149,9 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
         </NumberInput>
       </Box>
       <Box
-        mt={2}
-        className="encryption-inp-cn"
+        display="grid"
+        justifyContent="center"
+        mt={5}
         as="form"
         onSubmit={handleEncryptContent}
       >

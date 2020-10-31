@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Props } from "./handle-input.model";
 import { Heading, IconButton, Tooltip, Textarea } from "@chakra-ui/core";
 import { CloseIcon } from "@chakra-ui/icons";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
-  const {
-    setUserContent,
+  const { setUserContent, userContent } = props;
 
-    userContent,
-  } = props;
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const clearUserContent = (): void => {
     setUserContent("");
+    inputRef.current.focus();
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    setUserContent(e.target.value);
   };
 
   // letter spacing output
@@ -36,12 +39,13 @@ const HandleInput: React.FC<Props> = (props: Props) => {
       <Textarea
         mt={10}
         value={userContent}
-        onChange={(e) => setUserContent(e.target.value)}
+        onChange={handleChange}
         autoFocus
         placeholder="your input"
         overflow="auto"
         height="400px"
         width="100%"
+        ref={inputRef}
       />
     </>
   );

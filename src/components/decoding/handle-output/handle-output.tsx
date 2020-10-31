@@ -5,18 +5,12 @@ import {
   useToast,
   Box,
   Heading,
-  Tooltip,
-  RadioGroup,
-  Radio,
-  Stack,
   Alert,
   AlertIcon,
   AlertTitle,
   AlertDescription,
   Text,
-  Button,
   CloseButton,
-  Code,
 } from "@chakra-ui/core";
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
