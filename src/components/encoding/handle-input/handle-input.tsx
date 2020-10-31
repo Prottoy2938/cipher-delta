@@ -79,7 +79,8 @@ const HandleInput: React.FC<Props> = (props: Props) => {
     setUserContent("");
   };
 
-  const handleEncryptContent = (): void => {
+  const handleEncryptContent = (e: React.FormEvent<HTMLDivElement>): void => {
+    e.preventDefault();
     if (encKey.key.length) {
       toast({
         status: "info",
@@ -182,14 +183,19 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           </NumberInput>
         </Box>
       </Stack>
-      <Box mt={2} className="encryption-inp-cn">
+      <Box
+        mt={2}
+        className="encryption-inp-cn"
+        as="form"
+        onSubmit={handleEncryptContent}
+      >
         <InputGroup size="sm">
           <InputLeftAddon>optional</InputLeftAddon>
           <Input
-            type={showEncKey ? "text" : "password"}
+            type="text"
             placeholder="encryption key"
             width="250px"
-            value={encKey.key}
+            value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
             onChange={handleKeyChange}
             disabled={encKey.enabled}
           />
@@ -212,7 +218,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
                 width="60px"
                 size="sm"
                 fontWeight="regular"
-                onClick={handleEncryptContent}
+                type="submit"
               >
                 use
               </Button>

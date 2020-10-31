@@ -40,7 +40,8 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
     setEncKey({ ...encKey, key: e.target.value });
   };
 
-  const handleEncryptContent = (): void => {
+  const handleEncryptContent = (e: React.FormEvent<HTMLDivElement>): void => {
+    e.preventDefault();
     if (encKey.key.length) {
       toast({
         status: "info",
@@ -105,15 +106,21 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           </NumberInputStepper>
         </NumberInput>
       </Box>
-      <Box display="grid" justifyContent="center" mt={5}>
+      <Box
+        display="grid"
+        justifyContent="center"
+        mt={5}
+        as="form"
+        onSubmit={handleEncryptContent}
+      >
         <InputGroup size="sm">
           <InputLeftAddon>encryption key</InputLeftAddon>
 
           <Input
-            type={showEncKey ? "text" : "password"}
+            type="text"
             placeholder="leave empty if there's none"
             width={["220px", "240px", "270px", "200px", "300px"]}
-            value={encKey.key}
+            value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
             onChange={handleKeyChange}
             disabled={encKey.enabled}
           />
@@ -136,7 +143,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
                 width="60px"
                 size="sm"
                 fontWeight="regular"
-                onClick={handleEncryptContent}
+                type="text"
               >
                 apply
               </Button>
