@@ -61,7 +61,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
     setEncKey({ key: "", enabled: false });
     toast({
       status: "warning",
-      description: "Key encryption removed",
+      description: "Encryption key removed",
       isClosable: true,
       duration: 2200,
     });

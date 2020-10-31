@@ -86,7 +86,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     if (encKey.key.length) {
       toast({
         status: "info",
-        description: "Key encryption enabled",
+        description: "Encryption key removed",
         isClosable: true,
         duration: 2200,
       });
@@ -105,7 +105,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     setEncKey({ key: "", enabled: false });
     toast({
       status: "warning",
-      description: "Key encryption removed",
+      description: "Encryption key removed",
       isClosable: true,
       duration: 2200,
     });
@@ -234,6 +234,8 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
               </Button>
             )}
           </InputRightAddon>
+        </InputGroup>
+        <Box mt={3}>
           <Tooltip
             label={`${showEncKey ? "hide" : "view"} key`}
             bg="black"
@@ -287,7 +289,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
               borderBottomLeftRadius={0}
             />
           </Tooltip>
-        </InputGroup>
+        </Box>
       </Box>
       <Image
         src="/line-arrow-sketch.svg"
