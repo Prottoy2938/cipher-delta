@@ -24,13 +24,16 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { GrEmergency } from "react-icons/gr";
 
 //generate random string
-const genRan = (): string => {
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  );
+const genRan = (length: number): string => {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 };
-
 const HandleInput: React.FC<Props> = (props: Props) => {
   const toast = useToast();
 
@@ -110,7 +113,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
   };
 
   const handleUpdateKey = (): void => {
-    setEncKey({ enabled: true, key: genRan() });
+    setEncKey({ enabled: true, key: genRan(18) });
     toast({
       title: "Generated new encryption key",
       description: "Applied newly generated encryption key",

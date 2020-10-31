@@ -17,11 +17,15 @@ import { BsBoundingBox } from "react-icons/bs";
 import { BiKey } from "react-icons/bi";
 
 //generate random string
-const genRan = (): string => {
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  );
+const genRan = (length: number): string => {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 };
 
 const DashboardDrawer: React.FC = () => {
@@ -31,7 +35,7 @@ const DashboardDrawer: React.FC = () => {
 
   const showCopyToast = (): void => {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(genRan());
+      navigator.clipboard.writeText(genRan(18));
       toast({
         title: "Copied",
         description: "Generated new encryption key, copied to clipboard",

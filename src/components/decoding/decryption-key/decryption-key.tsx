@@ -134,7 +134,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
                 fontWeight="regular"
                 onClick={removeEncryption}
               >
-                remove encryption
+                remove key
               </Button>
             ) : (
               <Button
