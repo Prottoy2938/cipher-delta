@@ -11,9 +11,20 @@ import {
   AlertDescription,
   Text,
   CloseButton,
+  Popover,
+  PopoverTrigger,
+  PopoverArrow,
+  PopoverContent,
+  PopoverBody,
+  PopoverHeader,
+  PopoverCloseButton,
+  IconButton,
+  Kbd,
+  Link,
 } from "@chakra-ui/core";
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
+import { QuestionOutlineIcon } from "@chakra-ui/icons";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
   const { userContent, skip, encKey } = props;
@@ -88,6 +99,44 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           {convertedContent}
         </Box>
       </CopyToClipboard>
+      {convertedContent.length ? (
+        <Box mt={7} textAlign="end">
+          <Popover>
+            <PopoverTrigger>
+              <IconButton
+                bg="white"
+                size="sm"
+                aria-label="Info on getting expected output"
+                icon={<QuestionOutlineIcon />}
+              />
+            </PopoverTrigger>
+            <PopoverContent textAlign="center">
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader>Not getting expected output?</PopoverHeader>
+              <PopoverBody textAlign="start">
+                Make sure you've entered the correct letter substitution
+                position.
+                <Text mt={3}>
+                  If the content is encrypted using a key, then also make sure
+                  that you've entered the right key.
+                </Text>
+                <Text>
+                  Note that, currently for key encryption or decryption this
+                  application only uses{" "}
+                  <Link
+                    color="purple.700"
+                    href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
+                  >
+                    <Kbd>AES</Kbd>
+                  </Link>{" "}
+                  algorithm.
+                </Text>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        </Box>
+      ) : null}
     </>
   );
 };
