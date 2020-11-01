@@ -318,18 +318,21 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
       >
         <InputGroup size="sm">
           {!isMobile && (
-            <InputLeftAddon
-              borderColor={
-                colorMode === "dark" ? "#292929 !important" : "gray.200"
-              }
-              pl={[1, 2, 3, 4]}
-              pr={[1, 2, 3, 4]}
-            >
-              optional
-            </InputLeftAddon>
+            <label htmlFor="des-key">
+              <InputLeftAddon
+                borderColor={
+                  colorMode === "dark" ? "#292929 !important" : "gray.200"
+                }
+                pl={[1, 2, 3, 4]}
+                pr={[1, 2, 3, 4]}
+              >
+                optional
+              </InputLeftAddon>
+            </label>
           )}
           <Input
             type="text"
+            id="des-key"
             placeholder={
               isMobile ? "encryption key (optional)" : "encryption key"
             }
@@ -517,6 +520,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
         m="0 auto"
         mt={8}
         height="30px"
+        alt="a line that went through a sketched wave"
         className={colorMode === "dark" ? "svg-white" : "svg-black"}
       />
     </Box>

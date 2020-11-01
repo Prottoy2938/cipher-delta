@@ -156,18 +156,21 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
         onSubmit={handleEncryptContent}
       >
         <InputGroup size="sm">
-          <InputLeftAddon
-            borderColor={
-              colorMode === "dark" ? "#292929 !important" : "gray.200"
-            }
-            pl={[1, 2, 3, 4]}
-            pr={[1, 2, 3, 4]}
-          >
-            {isMobile ? "enc. key" : "encryption key"}
-          </InputLeftAddon>
+          <label htmlFor="enc-key">
+            <InputLeftAddon
+              borderColor={
+                colorMode === "dark" ? "#292929 !important" : "gray.200"
+              }
+              pl={[1, 2, 3, 4]}
+              pr={[1, 2, 3, 4]}
+            >
+              {isMobile ? "enc. key" : "encryption key"}
+            </InputLeftAddon>
+          </label>
 
           <Input
             type="text"
+            id="enc-key"
             placeholder="leave empty if there's none"
             width={["220px", "240px", "270px", "200px", "300px"]}
             value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
@@ -319,6 +322,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
         src="/arrow-sketch.svg"
         width="100%"
         height="30px"
+        alt="a sketched wave"
         className={colorMode === "dark" ? "svg-white" : "svg-black"}
       />
     </Box>

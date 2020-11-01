@@ -50,7 +50,6 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
     } else {
       //multiplying by -1 will make the process backwards, thus solving the substituted text
       const cypherText = substituteContent(userContent, skip * -1);
-      console.log(cypherText);
       setConvertedContent(cypherText);
     }
   }, [userContent, encKey.enabled, encKey.key, skip]);

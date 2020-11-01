@@ -107,7 +107,6 @@ const substituteContent = (userContent: string, skip = 1): string => {
     }
     //if user wants to skip backward
     else if (skip >= -25) {
-      console.log(skip);
       //finding the char index on the list
       const charIndex = revEngAlIndexes[char.toLowerCase()];
       if (charIndex >= 0) {
