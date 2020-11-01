@@ -111,6 +111,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
             padding={5}
             overflow="auto"
             value={convertedContent}
+            readOnly
           />
         </CopyToClipboard>
         {convertedContent.length ? (

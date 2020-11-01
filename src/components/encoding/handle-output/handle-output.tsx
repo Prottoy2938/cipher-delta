@@ -18,6 +18,7 @@ import {
   Code,
   useColorMode,
   Textarea,
+  Kbd,
 } from "@chakra-ui/core";
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
@@ -38,7 +39,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
 
       toast({
         title: "Copied",
-        description: "encryption key copied to the clip-board",
+        description: "encryption key copied to the clipboard",
         status: "info",
         duration: 3000,
         isClosable: true,
@@ -82,18 +83,29 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
             <AlertDescription display="block" mt={6}>
               <Text mb={3}>
                 Substitute Letter Position:{" "}
-                <Code colorScheme="blue">{skip}</Code>
+                <Code colorScheme={colorMode === "dark" ? "black" : "blue"}>
+                  {skip}
+                </Code>
               </Text>
-              <Text>
-                Encryption Key:{" "}
-                {encKey.enabled ? (
-                  <Button onClick={handleKeyCopy} size="xs">
-                    copy
-                  </Button>
-                ) : (
-                  "none"
-                )}
-              </Text>
+              {encKey.enabled ? (
+                <>
+                  <Text>
+                    Encryption method: <Kbd>AES</Kbd>
+                  </Text>
+                  <Text mt={2}>
+                    Encryption key:{" "}
+                    <Button
+                      onClick={handleKeyCopy}
+                      size="xs"
+                      colorScheme={colorMode === "dark" ? "teal" : "gray"}
+                    >
+                      copy
+                    </Button>
+                  </Text>
+                </>
+              ) : (
+                <Text>Encryption key: none</Text>
+              )}
             </AlertDescription>
           </Box>
           <CloseButton
@@ -142,6 +154,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           border="2px solid"
           borderColor={colorMode === "dark" ? "#292929" : "#e8e8e8"}
           value={viewAs === "converted" ? convertedContent : userContent}
+          readOnly
         />
       </CopyToClipboard>
       <RadioGroup
