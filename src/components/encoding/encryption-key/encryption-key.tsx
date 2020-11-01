@@ -114,6 +114,8 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     } else {
       toast({
         status: "warning",
+        title: "failed",
+
         description: "Encryption key is empty",
         isClosable: true,
         duration: 2200,
@@ -156,9 +158,16 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     const storedKey = window.localStorage.getItem("cd-enc-key");
     if (storedKey) {
       setEncKey({ enabled: true, key: storedKey });
+      toast({
+        description: "Using the previously saved key",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     } else {
       toast({
-        description: "No saved were key found",
+        title: "failed",
+        description: "No saved key were key found",
         status: "warning",
         duration: 3000,
         isClosable: true,
@@ -184,11 +193,10 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
               <AlertTitle>Saved key</AlertTitle>
               <AlertDescription display="block" mt={6}>
                 <Text>Saved key to browser storage (local storage)</Text>
-                How to use this saved key: gif
                 <Text mt={7}>
                   If this was a mistake,{" "}
-                  <Button size="xs" onClick={removeSavedKey}>
-                    remove it.
+                  <Button size="sm" height="25px" onClick={removeSavedKey}>
+                    remove it
                   </Button>{" "}
                   from storage
                 </Text>
@@ -206,6 +214,8 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     } else {
       toast({
         status: "warning",
+        title: "failed",
+
         description: "Encryption key is empty",
         isClosable: true,
         duration: 2200,
@@ -465,14 +475,14 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             <Tooltip
               // hasArrow
               textAlign="center"
-              label="save key to browser storage (localstorage) for later use"
+              label="save current key to browser storage (localstorage) for later use"
               bg={colorMode === "dark" ? "gray.300" : "black"}
               placement="top"
             >
               <IconButton
                 variant="outline"
                 size="sm"
-                aria-label="save key to browser storage (localstorage) for later use"
+                aria-label="save current key to browser storage (localstorage) for later use"
                 icon={<FaSave />}
                 borderRadius={1}
                 ml={4}
