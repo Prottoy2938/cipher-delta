@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/core";
 import { BsBoundingBox } from "react-icons/bs";
 import { BiKey } from "react-icons/bi";
-import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { SunIcon, MoonIcon, EmailIcon } from "@chakra-ui/icons";
 
 //generate random string
 const genRan = (length: number): string => {
@@ -101,6 +101,16 @@ const DashboardDrawer: React.FC = () => {
             >
               Appearance
             </Button>
+            <a href="mailto:svesp@protonmail.com">
+              <Button
+                leftIcon={<EmailIcon />}
+                justifyContent="space-around"
+                width="100%"
+                mb={6}
+              >
+                Send Feedback
+              </Button>
+            </a>
           </DrawerBody>
           <DrawerFooter>
             <Box>
