@@ -179,7 +179,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     if (encKey.key.length) {
       window.localStorage.setItem("cd-enc-key", encKey.key);
       toast({
-        position: isMobile ? "bottom" : "bottom-right",
+        position: "bottom",
         isClosable: true,
         duration: 9000,
         // eslint-disable-next-line react/display-name
