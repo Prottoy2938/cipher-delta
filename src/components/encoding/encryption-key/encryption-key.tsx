@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   NumberInput,
@@ -61,6 +61,15 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
   const { setEncKey, encKey, skip, setSkip } = props;
 
   const [showEncKey, setShowEncKey] = useState(false);
+  const [savedKeyFeature, setSavedKeyFeature] = useState({
+    showSave: false,
+  });
+
+  useEffect(() => {
+    if (window.localStorage) {
+      setSavedKeyFeature({ ...savedKeyFeature, showSave: true });
+    }
+  }, []);
 
   const handleSkipChange = (skip: any) => {
     if (skip <= 25 && skip >= -25) {
@@ -143,42 +152,65 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     });
   };
 
+  const useSavedKey = (): void => {
+    const storedKey = window.localStorage.getItem("cd-enc-key");
+    if (storedKey) {
+      setEncKey({ enabled: true, key: storedKey });
+    } else {
+      toast({
+        description: "No saved were key found",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
   const handleStoreKey = (): void => {
-    window.localStorage.setItem("cd-enc-key", encKey.key);
-    toast({
-      position: isMobile ? "bottom" : "bottom-right",
-      isClosable: true,
-      duration: 9000,
-      // eslint-disable-next-line react/display-name
-      render: ({ onClose }: any) => (
-        <Alert
-          status="success"
-          variant={colorMode === "dark" ? "solid" : "subtle"}
-        >
-          <AlertIcon />
-          <Box flex="1">
-            <AlertTitle>Saved key</AlertTitle>
-            <AlertDescription display="block" mt={6}>
-              <Text>Saved key to browser storage (local storage)</Text>
-              How to use this saved key: gif
-              <Text mt={7}>
-                If this was a mistake,{" "}
-                <Button size="xs" onClick={removeSavedKey}>
-                  remove it.
-                </Button>{" "}
-                from storage
-              </Text>
-            </AlertDescription>
-          </Box>
-          <CloseButton
-            onClick={onClose}
-            position="absolute"
-            right="8px"
-            top="8px"
-          />
-        </Alert>
-      ),
-    });
+    if (encKey.key.length) {
+      window.localStorage.setItem("cd-enc-key", encKey.key);
+      toast({
+        position: isMobile ? "bottom" : "bottom-right",
+        isClosable: true,
+        duration: 9000,
+        // eslint-disable-next-line react/display-name
+        render: ({ onClose }: any) => (
+          <Alert
+            status="success"
+            variant={colorMode === "dark" ? "solid" : "subtle"}
+          >
+            <AlertIcon />
+            <Box flex="1">
+              <AlertTitle>Saved key</AlertTitle>
+              <AlertDescription display="block" mt={6}>
+                <Text>Saved key to browser storage (local storage)</Text>
+                How to use this saved key: gif
+                <Text mt={7}>
+                  If this was a mistake,{" "}
+                  <Button size="xs" onClick={removeSavedKey}>
+                    remove it.
+                  </Button>{" "}
+                  from storage
+                </Text>
+              </AlertDescription>
+            </Box>
+            <CloseButton
+              onClick={onClose}
+              position="absolute"
+              right="8px"
+              top="8px"
+            />
+          </Alert>
+        ),
+      });
+    } else {
+      toast({
+        status: "warning",
+        description: "Encryption key is empty",
+        isClosable: true,
+        duration: 2200,
+      });
+    }
   };
 
   return (
@@ -249,7 +281,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             </PopoverHeader>
             <PopoverBody textAlign="start">
               Set the substitute letter position. For example, if the position
-              is in <Kbd>5</Kbd>, then for the letter <Code>a</Code> it would be
+              is in <Kbd>5</Kbd> then for the letter <Code>a</Code> it would be
               replaced by the letter <Code>e</Code>, and for the letter{" "}
               <Code>b</Code> it would be replaced by the letter <Code>f</Code>{" "}
               and the pattern will continue on all letters respectively.
@@ -330,18 +362,65 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
                 >
                   use
                 </Button>
-                <Tooltip
-                  label="view other options"
-                  bg={colorMode === "dark" ? "gray.300" : "black"}
-                  placement="bottom"
-                  hasArrow
-                >
-                  <IconButton
+
+                <Popover>
+                  <PopoverTrigger>
+                    <Box>
+                      <Tooltip
+                        label="view other options"
+                        bg={colorMode === "dark" ? "gray.300" : "black"}
+                        placement="top"
+                      >
+                        <IconButton
+                          width="10px"
+                          borderRadius={0}
+                          aria-label="more option"
+                          icon={<ChevronDownIcon />}
+                        />
+                      </Tooltip>
+                    </Box>
+                  </PopoverTrigger>
+
+                  <PopoverContent
+                    width="100px"
+                    m="0 auto"
+                    p={0}
                     borderRadius={0}
-                    aria-label="more option"
-                    icon={<ChevronDownIcon />}
-                  />
-                </Tooltip>
+                    border="none"
+                  >
+                    <PopoverBody p={0}>
+                      <Box
+                        onClick={useSavedKey}
+                        as="button"
+                        width="100%"
+                        height="24px"
+                        lineHeight="1.2"
+                        transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+                        border="1px"
+                        px="8px"
+                        borderRadius="2px"
+                        fontSize="14px"
+                        fontWeight="semibold"
+                        bg="#f5f6f7"
+                        borderColor="#ccd0d5"
+                        color="#4b4f56"
+                        _hover={{ bg: "#ebedf0" }}
+                        _active={{
+                          bg: "#dddfe2",
+                          transform: "scale(0.98)",
+                          borderColor: "#bec3c9",
+                        }}
+                        _focus={{
+                          boxShadow:
+                            "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
+                        }}
+                        type="button"
+                      >
+                        use saved key
+                      </Box>
+                    </PopoverBody>
+                  </PopoverContent>
+                </Popover>
               </ButtonGroup>
             )}
           </InputRightAddon>
@@ -367,7 +446,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
           <Tooltip
             bg={colorMode === "dark" ? "gray.300" : "black"}
             shouldWrapChildren
-            label="copy key"
+            label="copy current key"
             placement="top"
           >
             <IconButton
@@ -382,25 +461,27 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
               borderBottomLeftRadius={0}
             />
           </Tooltip>
-          <Tooltip
-            // hasArrow
-            textAlign="center"
-            label="save key to browser storage (localstorage) for later use"
-            bg={colorMode === "dark" ? "gray.300" : "black"}
-            placement="top"
-          >
-            <IconButton
-              variant="outline"
-              size="sm"
-              aria-label="save key to browser storage (localstorage) for later use"
-              icon={<FaSave />}
-              borderRadius={1}
-              ml={4}
-              borderTopLeftRadius={0}
-              borderBottomLeftRadius={0}
-              onClick={handleStoreKey}
-            />
-          </Tooltip>
+          {savedKeyFeature.showSave && (
+            <Tooltip
+              // hasArrow
+              textAlign="center"
+              label="save key to browser storage (localstorage) for later use"
+              bg={colorMode === "dark" ? "gray.300" : "black"}
+              placement="top"
+            >
+              <IconButton
+                variant="outline"
+                size="sm"
+                aria-label="save key to browser storage (localstorage) for later use"
+                icon={<FaSave />}
+                borderRadius={1}
+                ml={4}
+                borderTopLeftRadius={0}
+                borderBottomLeftRadius={0}
+                onClick={handleStoreKey}
+              />
+            </Tooltip>
+          )}
           <Tooltip
             label="generate new key and apply"
             bg={colorMode === "dark" ? "gray.300" : "black"}
