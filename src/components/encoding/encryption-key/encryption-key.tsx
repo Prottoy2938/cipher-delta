@@ -340,6 +340,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
         m="0 auto"
         mt={8}
         height="30px"
+        className={colorMode === "dark" ? "svg-white" : "svg-black"}
       />
     </Box>
   );

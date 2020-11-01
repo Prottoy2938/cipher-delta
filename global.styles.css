@@ -58,3 +58,13 @@ div .grid-row {
   margin: 0 !important;
   justify-content: center !important;
 }
+
+div .svg-black {
+  filter: invert(0%) sepia(15%) saturate(13%) hue-rotate(351deg)
+    brightness(105%) contrast(88%);
+}
+
+div .svg-white {
+  filter: invert(15%) sepia(31%) saturate(13%) hue-rotate(17deg)
+    brightness(100%) contrast(101%);
+}

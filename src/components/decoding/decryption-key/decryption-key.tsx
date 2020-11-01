@@ -214,7 +214,14 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           </Tooltip>
         )}
       </Box>
-      <Image mt={8} src="/arrow-sketch.svg" width="100%" height="30px" />
+
+      <Image
+        mt={8}
+        src="/arrow-sketch.svg"
+        width="100%"
+        height="30px"
+        className={colorMode === "dark" ? "svg-white" : "svg-black"}
+      />
     </Box>
   );
 };
