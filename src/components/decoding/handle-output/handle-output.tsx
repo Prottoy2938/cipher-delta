@@ -22,6 +22,7 @@ import {
   Kbd,
   Link,
   useColorMode,
+  Textarea,
 } from "@chakra-ui/core";
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
@@ -94,10 +95,10 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
         Plain Outcome
       </Heading>
       <Box mb={[20, 20, 20, 0]}>
-        <CopyToClipboard text={convertedContent} cursor="pointer">
-          <Box
+        <CopyToClipboard text={convertedContent}>
+          <Textarea
             onClick={triggerCopyToast}
-            cursor="text"
+            cursor="pointer"
             background={colorMode === "dark" ? "#292929" : "#f5f5f5"}
             color={colorMode === "dark" ? "white" : "black"}
             m="0 auto"
@@ -109,9 +110,8 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
             textAlign="start"
             padding={5}
             overflow="auto"
-          >
-            {convertedContent}
-          </Box>
+            value={convertedContent}
+          />
         </CopyToClipboard>
         {convertedContent.length ? (
           <Box mt={7} textAlign="end">

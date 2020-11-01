@@ -17,6 +17,7 @@ import {
   CloseButton,
   Code,
   useColorMode,
+  Textarea,
 } from "@chakra-ui/core";
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
@@ -125,11 +126,10 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
 
       <CopyToClipboard
         text={viewAs === "converted" ? convertedContent : userContent}
-        cursor="pointer"
       >
-        <Box
+        <Textarea
           onClick={triggerCopyToast}
-          cursor="text"
+          cursor="pointer"
           background={colorMode === "dark" ? "#292929" : "#f5f5f5"}
           color={colorMode === "dark" ? "white" : "black"}
           m="0 auto"
@@ -141,9 +141,8 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           overflow="auto"
           border="2px solid"
           borderColor={colorMode === "dark" ? "#292929" : "#e8e8e8"}
-        >
-          {viewAs === "converted" ? convertedContent : userContent}
-        </Box>
+          value={viewAs === "converted" ? convertedContent : userContent}
+        />
       </CopyToClipboard>
       <RadioGroup
         float="right"
