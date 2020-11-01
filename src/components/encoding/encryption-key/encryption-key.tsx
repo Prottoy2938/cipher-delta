@@ -27,12 +27,18 @@ import {
   Code,
   Link,
   useColorMode,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  CloseButton,
 } from "@chakra-ui/core";
 import { CopyIcon, InfoIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { GrEmergency } from "react-icons/gr";
 import { Props } from "./encryption-key.model";
 import { isMobile } from "react-device-detect";
+import { FaSave } from "react-icons/fa";
 
 //generate random string
 const genRan = (length: number): string => {
@@ -123,6 +129,54 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
       status: "info",
       duration: 4000,
       isClosable: true,
+    });
+  };
+
+  const removeSavedKey = (): void => {
+    window.localStorage.removeItem("cd-enc-key");
+    toast({
+      description: "key removed from localstorage",
+      status: "warning",
+      duration: 2500,
+      isClosable: true,
+    });
+  };
+
+  const handleStoreKey = (): void => {
+    window.localStorage.setItem("cd-enc-key", encKey.key);
+    toast({
+      position: isMobile ? "bottom" : "bottom-right",
+      isClosable: true,
+      duration: 9000,
+      // eslint-disable-next-line react/display-name
+      render: ({ onClose }: any) => (
+        <Alert
+          status="success"
+          variant={colorMode === "dark" ? "solid" : "subtle"}
+        >
+          <AlertIcon />
+          <Box flex="1">
+            <AlertTitle>Saved key</AlertTitle>
+            <AlertDescription display="block" mt={6}>
+              <Text>Saved key to browser storage (local storage)</Text>
+
+              <Text mt={7}>
+                If this was a mistake,{" "}
+                <Button size="xs" onClick={removeSavedKey}>
+                  remove it.
+                </Button>{" "}
+                from storage
+              </Text>
+            </AlertDescription>
+          </Box>
+          <CloseButton
+            onClick={onClose}
+            position="absolute"
+            right="8px"
+            top="8px"
+          />
+        </Alert>
+      ),
     });
   };
 
@@ -314,7 +368,25 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
               borderBottomLeftRadius={0}
             />
           </Tooltip>
-
+          <Tooltip
+            // hasArrow
+            textAlign="center"
+            label="save key to browser storage (localstorage) for later use"
+            bg={colorMode === "dark" ? "gray.300" : "black"}
+            placement="top"
+          >
+            <IconButton
+              variant="outline"
+              size="sm"
+              aria-label="save key to browser storage (localstorage) for later use"
+              icon={<FaSave />}
+              borderRadius={1}
+              ml={4}
+              borderTopLeftRadius={0}
+              borderBottomLeftRadius={0}
+              onClick={handleStoreKey}
+            />
+          </Tooltip>
           <Tooltip
             label="generate new key and apply"
             bg={colorMode === "dark" ? "gray.300" : "black"}
