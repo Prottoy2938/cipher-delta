@@ -5,7 +5,7 @@ import Head from "next/head";
 import { Row, Col } from "react-grid-system";
 import { Box, Heading, Button, useColorMode } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import EncryptionKey from "../src/components/encoding/encryption-key/encryption-key";
 
 const Home: React.FC = () => {
@@ -57,9 +57,9 @@ const Home: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <a href="/decoding">
+      <a href="/decoding" target="_blank" rel="noopener noreferrer">
         <Button
-          rightIcon={<ArrowForwardIcon />}
+          rightIcon={<ExternalLinkIcon />}
           colorScheme="gray"
           variant="link"
           pos="absolute"

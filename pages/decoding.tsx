@@ -5,7 +5,7 @@ import Head from "next/head";
 import { Row, Col } from "react-grid-system";
 import { Box, Heading, Button } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
-import { ArrowBackIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import DecryptionKey from "../src/components/decoding/decryption-key/decryption-key";
 
 const Decoding: React.FC = () => {
@@ -31,9 +31,9 @@ const Decoding: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <a href="/">
+      <a href="/" target="_blank" rel="noopener noreferrer">
         <Button
-          leftIcon={<ArrowBackIcon />}
+          rightIcon={<ExternalLinkIcon />}
           colorScheme="gray"
           variant="link"
           pos="absolute"
