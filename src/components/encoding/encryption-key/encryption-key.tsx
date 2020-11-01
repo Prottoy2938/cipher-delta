@@ -32,8 +32,9 @@ import {
   AlertTitle,
   AlertDescription,
   CloseButton,
+  ButtonGroup,
 } from "@chakra-ui/core";
-import { CopyIcon, InfoIcon } from "@chakra-ui/icons";
+import { CopyIcon, InfoIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { GrEmergency } from "react-icons/gr";
 import { Props } from "./encryption-key.model";
@@ -159,7 +160,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             <AlertTitle>Saved key</AlertTitle>
             <AlertDescription display="block" mt={6}>
               <Text>Saved key to browser storage (local storage)</Text>
-
+              How to use this saved key: gif
               <Text mt={7}>
                 If this was a mistake,{" "}
                 <Button size="xs" onClick={removeSavedKey}>
@@ -319,16 +320,29 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
                 {isMobile ? "remove" : "remove encryption"}
               </Button>
             ) : (
-              <Button
-                borderRadius={0}
-                height="100%"
-                width="60px"
-                size="sm"
-                fontWeight="regular"
-                type="submit"
-              >
-                use
-              </Button>
+              <ButtonGroup size="sm" isAttached variant="outline">
+                <Button
+                  borderRadius={0}
+                  width="60px"
+                  type="submit"
+                  fontWeight="regular"
+                  mr="-px"
+                >
+                  use
+                </Button>
+                <Tooltip
+                  label="view other options"
+                  bg={colorMode === "dark" ? "gray.300" : "black"}
+                  placement="bottom"
+                  hasArrow
+                >
+                  <IconButton
+                    borderRadius={0}
+                    aria-label="more option"
+                    icon={<ChevronDownIcon />}
+                  />
+                </Tooltip>
+              </ButtonGroup>
             )}
           </InputRightAddon>
         </InputGroup>
