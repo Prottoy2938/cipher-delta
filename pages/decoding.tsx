@@ -5,7 +5,7 @@ import Head from "next/head";
 import { Row, Col } from "react-grid-system";
 import { Box, Heading, Button } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
-import { ArrowBackIcon, ExternalLinkIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import DecryptionKey from "../src/components/decoding/decryption-key/decryption-key";
 
 const Decoding: React.FC = () => {
