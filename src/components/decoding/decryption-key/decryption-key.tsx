@@ -16,6 +16,7 @@ import {
   Button,
   Image,
   Text,
+  useColorMode,
 } from "@chakra-ui/core";
 import { Props } from "./decryption-key.model";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -23,6 +24,7 @@ import { isMobile } from "react-device-detect";
 
 const DecryptionKey: React.FC<Props> = (props: Props) => {
   const toast = useToast();
+  const { colorMode } = useColorMode();
 
   const { setEncKey, encKey, skip, setSkip } = props;
 
@@ -89,7 +91,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
             <Tooltip
               // hasArrow
               label="forward substitute letter position"
-              bg="black"
+              bg={colorMode === "dark" ? "gray.300" : "black"}
               placement="top"
             >
               <NumberIncrementStepper />
@@ -97,7 +99,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
             <Tooltip
               hasArrow
               label="backward substitute letter position"
-              bg="black"
+              bg={colorMode === "dark" ? "gray.300" : "black"}
               placement="bottom"
             >
               <NumberDecrementStepper />
@@ -153,7 +155,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
             <Tooltip
               // hasArrow
               label={`${showEncKey ? "hide" : "view"} key`}
-              bg="black"
+              bg={colorMode === "dark" ? "gray.300" : "black"}
               placement="top"
             >
               <IconButton
@@ -165,6 +167,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
                 borderRadius={1}
                 borderTopLeftRadius={0}
                 borderBottomLeftRadius={0}
+                bg={colorMode === "dark" ? "gray.300" : "black"}
               />
             </Tooltip>
           )}
@@ -173,7 +176,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           <Tooltip
             // hasArrow
             label={`${showEncKey ? "hide" : "view"} key`}
-            bg="black"
+            bg={colorMode === "dark" ? "gray.300" : "black"}
             placement="top"
           >
             <IconButton

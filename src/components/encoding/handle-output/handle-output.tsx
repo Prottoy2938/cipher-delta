@@ -16,6 +16,7 @@ import {
   Button,
   CloseButton,
   Code,
+  useColorMode,
 } from "@chakra-ui/core";
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
@@ -27,6 +28,8 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
   const [viewAs, setViewAs] = useState("converted");
   const [convertedContent, setConvertedContent] = useState("");
   const toast = useToast();
+
+  const { colorMode } = useColorMode();
 
   const handleKeyCopy = (): void => {
     if (navigator.clipboard) {
@@ -68,7 +71,10 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       duration: 30000,
       // eslint-disable-next-line react/display-name
       render: ({ onClose }: any) => (
-        <Alert status="success" variant="left-accent">
+        <Alert
+          status="success"
+          variant={colorMode === "dark" ? "solid" : "subtle"}
+        >
           <AlertIcon />
           <Box flex="1">
             <AlertTitle>Cipher copied to clipboard</AlertTitle>

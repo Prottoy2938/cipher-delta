@@ -21,6 +21,7 @@ import {
   IconButton,
   Kbd,
   Link,
+  useColorMode,
 } from "@chakra-ui/core";
 import substituteContent from "../../main-algorithm";
 import CryptoJS from "crypto-js";
@@ -29,6 +30,8 @@ import { isMobile } from "react-device-detect";
 
 const HandleOutput: React.FC<Props> = (props: Props) => {
   const { userContent, skip, encKey } = props;
+
+  const { colorMode } = useColorMode();
 
   const [convertedContent, setConvertedContent] = useState("");
   const toast = useToast();
@@ -58,7 +61,10 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
       duration: 30000,
       // eslint-disable-next-line react/display-name
       render: ({ onClose }: any) => (
-        <Alert status="success" variant="left-accent">
+        <Alert
+          status="success"
+          variant={colorMode === "dark" ? "solid" : "subtle"}
+        >
           <AlertIcon />
           <Box flex="1">
             <AlertTitle>Copied</AlertTitle>

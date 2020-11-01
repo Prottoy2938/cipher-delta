@@ -1,10 +1,18 @@
 import React, { useRef } from "react";
 import { Props } from "./handle-input.model";
-import { Heading, IconButton, Tooltip, Textarea } from "@chakra-ui/core";
+import {
+  Heading,
+  IconButton,
+  Tooltip,
+  Textarea,
+  useColorMode,
+} from "@chakra-ui/core";
 import { CloseIcon } from "@chakra-ui/icons";
 
 const HandleInput: React.FC<Props> = (props: Props) => {
   const { setUserContent, userContent } = props;
+
+  const { colorMode } = useColorMode();
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -23,7 +31,11 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         Plain Text
       </Heading>
 
-      <Tooltip label="clear input" bg="black" placement="top">
+      <Tooltip
+        label="clear input"
+        placement="top"
+        bg={colorMode === "dark" ? "gray.300" : "black"}
+      >
         <IconButton
           aria-label="clear input"
           size="xs"

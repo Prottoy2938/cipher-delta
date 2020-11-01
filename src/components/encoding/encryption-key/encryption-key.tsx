@@ -26,6 +26,7 @@ import {
   Kbd,
   Code,
   Link,
+  useColorMode,
 } from "@chakra-ui/core";
 import { CopyIcon, InfoIcon } from "@chakra-ui/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -47,6 +48,8 @@ const genRan = (length: number): string => {
 
 const EncryptionKey: React.FC<Props> = (props: Props) => {
   const toast = useToast();
+
+  const { colorMode } = useColorMode();
 
   const { setEncKey, encKey, skip, setSkip } = props;
 
@@ -144,7 +147,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             <Tooltip
               // hasArrow
               label="forward substitute letter position"
-              bg="black"
+              bg={colorMode === "dark" ? "gray.300" : "black"}
               placement="top"
             >
               <NumberIncrementStepper />
@@ -152,7 +155,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             <Tooltip
               hasArrow
               label="backward substitute letter position"
-              bg="black"
+              bg={colorMode === "dark" ? "gray.300" : "black"}
               placement="bottom"
             >
               <NumberDecrementStepper />
@@ -247,7 +250,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
         <Box mt={[6, 6, 6, 3]}>
           <Tooltip
             label={`${showEncKey ? "hide" : "view"} key`}
-            bg="black"
+            bg={colorMode === "dark" ? "gray.300" : "black"}
             placement="top"
           >
             <IconButton
@@ -263,7 +266,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
           </Tooltip>
 
           <Tooltip
-            bg="black"
+            bg={colorMode === "dark" ? "gray.300" : "black"}
             shouldWrapChildren
             label="copy key"
             placement="top"
@@ -283,7 +286,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
 
           <Tooltip
             label="generate new key and apply"
-            bg="black"
+            bg={colorMode === "dark" ? "gray.300" : "black"}
             placement="top"
           >
             <IconButton
