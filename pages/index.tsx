@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HandleInput from "../src/components/encoding/handle-input/handle-input";
 import HandleOutput from "../src/components/encoding/handle-output/handle-output";
 import Head from "next/head";
 import { Row, Col } from "react-grid-system";
-import { Box, Heading, Button } from "@chakra-ui/core";
+import { Box, Heading, Button, useColorMode } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import EncryptionKey from "../src/components/encoding/encryption-key/encryption-key";
@@ -12,6 +12,26 @@ const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");
   const [encKey, setEncKey] = useState({ key: "", enabled: false });
   const [skip, setSkip] = useState(1);
+  const { colorMode, setColorMode } = useColorMode();
+
+  //due to this issue: https://github.com/chakra-ui/chakra-ui/issues/2106
+  //answer from here: https://github.com/chakra-ui/chakra-ui/pull/2114
+  //default theme is dark
+  useEffect(() => {
+    if (!colorMode) {
+      if (window.localStorage) {
+        const savedTheme = window.localStorage.getItem("chakra-ui-color-mode");
+        if (savedTheme == "light" || savedTheme == "dark") {
+          setColorMode(savedTheme);
+        } else {
+          setColorMode("light");
+        }
+      } else {
+        setColorMode("light");
+      }
+    }
+  }, [colorMode, setColorMode]);
+
   return (
     <>
       <Head>
@@ -46,6 +66,7 @@ const Home: React.FC = () => {
           ml={[1, 1, 2, 3]}
           bottom={["5px", "5px", "5px", "auto"]}
           right={["5px", "5px", "5px", "auto"]}
+          mb={[3, 3, 3, 0]}
         >
           Decoding
         </Button>

@@ -12,9 +12,11 @@ import {
   DrawerFooter,
   Box,
   Image,
+  useColorMode,
 } from "@chakra-ui/core";
 import { BsBoundingBox } from "react-icons/bs";
 import { BiKey } from "react-icons/bi";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
 //generate random string
 const genRan = (length: number): string => {
@@ -32,6 +34,8 @@ const DashboardDrawer: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
   const toast = useToast();
+
+  const { toggleColorMode, colorMode } = useColorMode();
 
   const showCopyToast = (): void => {
     if (navigator.clipboard) {
@@ -87,6 +91,15 @@ const DashboardDrawer: React.FC = () => {
               onClick={showCopyToast}
             >
               Secure Encryption Key
+            </Button>
+            <Button
+              leftIcon={colorMode === "light" ? <SunIcon /> : <MoonIcon />}
+              justifyContent="space-around"
+              width="100%"
+              mb={6}
+              onClick={toggleColorMode}
+            >
+              Appearance
             </Button>
           </DrawerBody>
           <DrawerFooter>

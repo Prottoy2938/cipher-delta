@@ -40,6 +40,7 @@ const Decoding: React.FC = () => {
           ml={[1, 1, 2, 3]}
           bottom={["5px", "5px", "5px", "auto"]}
           right={["5px", "5px", "5px", "auto"]}
+          mb={[3, 3, 3, 0]}
         >
           Encoding
         </Button>

@@ -30,7 +30,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
           pos="absolute"
           zIndex={10}
           right={5}
-          top={12}
+          top={[12, 12, 12, 20]}
           onClick={clearUserContent}
           icon={<CloseIcon />}
         />
