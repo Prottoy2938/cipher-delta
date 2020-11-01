@@ -130,15 +130,17 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
         <Box
           onClick={triggerCopyToast}
           cursor="text"
-          background="#f5f5f5"
+          background={colorMode === "dark" ? "#292929" : "#f5f5f5"}
+          color={colorMode === "dark" ? "white" : "black"}
           m="0 auto"
           width="100%"
           height="350px"
-          border="2px solid #e8e8e8"
           borderRadius={2}
           textAlign="start"
           padding={5}
           overflow="auto"
+          border="2px solid"
+          borderColor={colorMode === "dark" ? "#292929" : "#e8e8e8"}
         >
           {viewAs === "converted" ? convertedContent : userContent}
         </Box>

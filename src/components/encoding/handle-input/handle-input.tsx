@@ -56,6 +56,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         height="400px"
         width="100%"
         ref={inputRef}
+        borderColor={colorMode === "dark" ? "#3b3b3b" : "gray.200"}
       />
     </>
   );

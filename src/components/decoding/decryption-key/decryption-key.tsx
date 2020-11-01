@@ -84,10 +84,15 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           clampValueOnBlur={false}
           onChange={handleSkipChange}
           value={skip}
+          borderColor={colorMode === "dark" ? "#292929 !important" : "gray.200"}
         >
           <NumberInputField />
 
-          <NumberInputStepper bg="white">
+          <NumberInputStepper
+            borderColor={
+              colorMode === "dark" ? "#292929 !important" : "gray.200"
+            }
+          >
             <Tooltip
               // hasArrow
               label="forward substitute letter position"
@@ -115,7 +120,13 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
         onSubmit={handleEncryptContent}
       >
         <InputGroup size="sm">
-          <InputLeftAddon pl={[1, 2, 3, 4]} pr={[1, 2, 3, 4]}>
+          <InputLeftAddon
+            borderColor={
+              colorMode === "dark" ? "#292929 !important" : "gray.200"
+            }
+            pl={[1, 2, 3, 4]}
+            pr={[1, 2, 3, 4]}
+          >
             {isMobile ? "enc. key" : "encryption key"}
           </InputLeftAddon>
 
@@ -126,8 +137,17 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
             value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
             onChange={handleKeyChange}
             disabled={encKey.enabled}
+            borderColor={
+              colorMode === "dark" ? "#292929 !important" : "gray.200"
+            }
           />
-          <InputRightAddon mr={3} padding="0">
+          <InputRightAddon
+            borderColor={
+              colorMode === "dark" ? "#292929 !important" : "gray.200"
+            }
+            mr={3}
+            padding="0"
+          >
             {encKey.enabled ? (
               <Button
                 borderRadius={0}
@@ -167,7 +187,6 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
                 borderRadius={1}
                 borderTopLeftRadius={0}
                 borderBottomLeftRadius={0}
-                bg={colorMode === "dark" ? "gray.300" : "black"}
               />
             </Tooltip>
           )}

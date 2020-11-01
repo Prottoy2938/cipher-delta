@@ -48,6 +48,7 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         />
       </Tooltip>
       <Textarea
+        borderColor={colorMode === "dark" ? "#3b3b3b" : "gray.200"}
         value={userContent}
         onChange={handleChange}
         autoFocus

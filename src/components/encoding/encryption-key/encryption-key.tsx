@@ -140,10 +140,15 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
           clampValueOnBlur={false}
           onChange={handleSkipChange}
           value={skip}
+          borderColor={colorMode === "dark" ? "#292929 !important" : "gray.200"}
         >
           <NumberInputField />
 
-          <NumberInputStepper bg="white">
+          <NumberInputStepper
+            borderColor={
+              colorMode === "dark" ? "#292929 !important" : "gray.200"
+            }
+          >
             <Tooltip
               // hasArrow
               label="forward substitute letter position"
@@ -165,17 +170,28 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
         <Popover>
           <PopoverTrigger>
             <IconButton
-              bg="white"
+              bg="transparent"
               size="sm"
               ml={3}
               aria-label="whats substitute letter position"
               icon={<InfoIcon />}
             />
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent
+            borderColor={
+              colorMode === "dark" ? "#292929 !important" : "gray.200"
+            }
+          >
             <PopoverArrow />
             <PopoverCloseButton />
-            <PopoverHeader>Substitute letter position</PopoverHeader>
+            <PopoverHeader
+              borderBottom="2px solid"
+              borderColor={
+                colorMode === "dark" ? "#292929 !important" : "gray.200"
+              }
+            >
+              Substitute letter position
+            </PopoverHeader>
             <PopoverBody textAlign="start">
               Set the substitute letter position. For example, if the position
               is in <Kbd>5</Kbd>, then for the letter <Code>a</Code> it would be
@@ -205,7 +221,13 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
       >
         <InputGroup size="sm">
           {!isMobile && (
-            <InputLeftAddon pl={[1, 2, 3, 4]} pr={[1, 2, 3, 4]}>
+            <InputLeftAddon
+              borderColor={
+                colorMode === "dark" ? "#292929 !important" : "gray.200"
+              }
+              pl={[1, 2, 3, 4]}
+              pr={[1, 2, 3, 4]}
+            >
               optional
             </InputLeftAddon>
           )}
@@ -214,12 +236,21 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             placeholder={
               isMobile ? "encryption key (optional)" : "encryption key"
             }
+            borderColor={
+              colorMode === "dark" ? "#292929 !important" : "gray.200"
+            }
             width="250px"
             value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
             onChange={handleKeyChange}
             disabled={encKey.enabled}
           />
-          <InputRightAddon mr={3} padding="0">
+          <InputRightAddon
+            mr={3}
+            padding="0"
+            borderColor={
+              colorMode === "dark" ? "#292929 !important" : "gray.200"
+            }
+          >
             {encKey.enabled ? (
               <Button
                 borderRadius={0}

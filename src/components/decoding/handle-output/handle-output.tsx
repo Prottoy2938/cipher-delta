@@ -98,11 +98,13 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
           <Box
             onClick={triggerCopyToast}
             cursor="text"
-            background="#f5f5f5"
+            background={colorMode === "dark" ? "#292929" : "#f5f5f5"}
+            color={colorMode === "dark" ? "white" : "black"}
             m="0 auto"
             width="100%"
             height="350px"
-            border="2px solid #e8e8e8"
+            border="2px solid"
+            borderColor={colorMode === "dark" ? "#292929" : "#e8e8e8"}
             borderRadius={2}
             textAlign="start"
             padding={5}
@@ -116,16 +118,28 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
             <Popover>
               <PopoverTrigger>
                 <IconButton
-                  bg="white"
+                  bg="transparent"
                   size="sm"
                   aria-label="Info on getting expected output"
                   icon={<QuestionOutlineIcon />}
                 />
               </PopoverTrigger>
-              <PopoverContent textAlign="center">
+              <PopoverContent
+                textAlign="center"
+                borderColor={
+                  colorMode === "dark" ? "#292929 !important" : "gray.200"
+                }
+              >
                 <PopoverArrow />
                 <PopoverCloseButton />
-                <PopoverHeader>Not getting expected output?</PopoverHeader>
+                <PopoverHeader
+                  borderBottom="2px solid"
+                  borderColor={
+                    colorMode === "dark" ? "#292929 !important" : "gray.200"
+                  }
+                >
+                  Not getting expected output?
+                </PopoverHeader>
                 <PopoverBody textAlign="start">
                   Make sure you've entered the correct letter substitution
                   position.
@@ -140,7 +154,15 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
                       color="purple.700"
                       href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
                     >
-                      <Kbd>AES</Kbd>
+                      <Kbd
+                        borderColor={
+                          colorMode === "dark"
+                            ? "#292929 !important"
+                            : "gray.200"
+                        }
+                      >
+                        AES
+                      </Kbd>
                     </Link>{" "}
                     algorithm.
                   </Text>
