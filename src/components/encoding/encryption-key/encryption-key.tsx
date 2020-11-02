@@ -224,7 +224,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <Box width="100%" mt={["10%", "10%", "10%", "28%"]}>
+    <Box width="100%" mt={["10%", "10%", "10%", "23%"]}>
       <Box display="flex" justifyContent="center">
         <Text mr={5}>Substitute Letter Position: </Text>
         <NumberInput
@@ -438,7 +438,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             )}
           </InputRightAddon>
         </InputGroup>
-        <Box mt={[6, 6, 6, 3]}>
+        <Box mt={[8, 8, 8, 6]}>
           <Tooltip
             label={`${showEncKey ? "hide" : "view"} key`}
             bg={colorMode === "dark" ? "gray.300" : "black"}
@@ -446,7 +446,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
           >
             <IconButton
               variant="outline"
-              size="sm"
+              // size="sm"
               aria-label="view key"
               icon={showEncKey ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
               onClick={(): void => setShowEncKey(!showEncKey)}
@@ -464,9 +464,9 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
           >
             <IconButton
               onClick={handleKeyCopy}
-              ml={2}
+              ml={6}
               variant="outline"
-              size="sm"
+              // size="sm"
               aria-label="copy encryption key"
               icon={<CopyIcon />}
               borderRadius={1}
@@ -484,11 +484,11 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             >
               <IconButton
                 variant="outline"
-                size="sm"
+                // size="sm"
                 aria-label="save current key to browser storage (localstorage) for later use"
                 icon={<FaSave />}
                 borderRadius={1}
-                ml={4}
+                ml={6}
                 borderTopLeftRadius={0}
                 borderBottomLeftRadius={0}
                 onClick={handleStoreKey}
@@ -501,9 +501,9 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             placement="top"
           >
             <IconButton
-              ml={4}
+              ml={6}
               variant="outline"
-              size="sm"
+              // size="sm"
               aria-label="generate new key and apply"
               icon={<GrEmergency />}
               onClick={handleUpdateKey}

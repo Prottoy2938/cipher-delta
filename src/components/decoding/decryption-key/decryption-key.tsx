@@ -282,7 +282,6 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
             >
               <IconButton
                 variant="outline"
-                size="sm"
                 aria-label="view key"
                 icon={showEncKey ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                 onClick={(): void => setShowEncKey(!showEncKey)}
