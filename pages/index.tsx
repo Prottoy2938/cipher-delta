@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import HandleInput from "../src/components/encoding/handle-input/handle-input";
 import HandleOutput from "../src/components/encoding/handle-output/handle-output";
 import Head from "next/head";
-import { Row, Col } from "react-grid-system";
 import { Box, Heading, Button, useColorMode } from "@chakra-ui/core";
 import Drawer from "../src/components/drawer/drawer";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import EncryptionKey from "../src/components/encoding/encryption-key/encryption-key";
+import { Grid, GridItem } from "@chakra-ui/core";
 
 const Home: React.FC = () => {
   const [userContent, setUserContent] = useState("");
@@ -77,29 +77,32 @@ const Home: React.FC = () => {
         <Heading mt={2} mb={16}>
           Encoding
         </Heading>
-        <Row className="grid-row">
-          <Col xs={12} sm={12} md={12} lg={4} xl={4}>
+        <Grid templateColumns="repeat(15, 1fr)" gap={2} p={3}>
+          <GridItem colSpan={[15, 15, 15, 5]}>
+            {" "}
             <HandleInput
               setUserContent={setUserContent}
               userContent={userContent}
             />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={5} xl={5}>
+          </GridItem>
+          <GridItem colSpan={[15, 15, 15, 6]}>
+            {" "}
             <EncryptionKey
               setEncKey={setEncKey}
               encKey={encKey}
               skip={skip}
               setSkip={setSkip}
             />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={3} xl={3}>
+          </GridItem>
+          <GridItem colSpan={[15, 15, 15, 4]}>
+            {" "}
             <HandleOutput
               encKey={encKey}
               userContent={userContent}
               skip={skip}
             />
-          </Col>
-        </Row>
+          </GridItem>
+        </Grid>
       </Box>
     </>
   );
