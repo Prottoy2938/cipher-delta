@@ -39,10 +39,11 @@ const HandleInput: React.FC<Props> = (props: Props) => {
         <IconButton
           aria-label="clear input"
           size="xs"
-          pos="absolute"
           zIndex={10}
-          right={5}
-          top={[12, 12, 12, 20]}
+          float="right"
+          mt="8px"
+          mb="-50px"
+          mr={4}
           onClick={clearUserContent}
           icon={<CloseIcon />}
         />

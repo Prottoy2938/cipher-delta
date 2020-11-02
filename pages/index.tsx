@@ -79,14 +79,12 @@ const Home: React.FC = () => {
         </Heading>
         <Grid templateColumns="repeat(15, 1fr)" gap={2} p={3}>
           <GridItem colSpan={[15, 15, 15, 5]}>
-            {" "}
             <HandleInput
               setUserContent={setUserContent}
               userContent={userContent}
             />
           </GridItem>
           <GridItem colSpan={[15, 15, 15, 6]}>
-            {" "}
             <EncryptionKey
               setEncKey={setEncKey}
               encKey={encKey}
@@ -95,7 +93,6 @@ const Home: React.FC = () => {
             />
           </GridItem>
           <GridItem colSpan={[15, 15, 15, 4]}>
-            {" "}
             <HandleOutput
               encKey={encKey}
               userContent={userContent}
