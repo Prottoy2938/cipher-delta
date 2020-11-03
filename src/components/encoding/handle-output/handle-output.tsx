@@ -70,7 +70,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
     toast({
       position: isMobile ? "bottom" : "bottom-right",
       isClosable: true,
-      duration: 30000,
+      duration: 90000,
       // eslint-disable-next-line react/display-name
       render: ({ onClose }: any) => (
         <Alert

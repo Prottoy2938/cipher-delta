@@ -58,7 +58,7 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
     toast({
       position: isMobile ? "bottom" : "bottom-right",
       isClosable: true,
-      duration: 30000,
+      duration: 90000,
       // eslint-disable-next-line react/display-name
       render: ({ onClose }: any) => (
         <Alert
@@ -113,64 +113,60 @@ const HandleOutput: React.FC<Props> = (props: Props) => {
             readOnly
           />
         </CopyToClipboard>
-        {convertedContent.length ? (
-          <Box mt={7} textAlign="end">
-            <Popover>
-              <PopoverTrigger>
-                <IconButton
-                  bg="transparent"
-                  size="sm"
-                  aria-label="Info on getting expected output"
-                  icon={<QuestionOutlineIcon />}
-                />
-              </PopoverTrigger>
-              <PopoverContent
-                textAlign="center"
+        <Box mt={7} textAlign="end">
+          <Popover>
+            <PopoverTrigger>
+              <IconButton
+                bg="transparent"
+                size="sm"
+                aria-label="Info on getting expected output"
+                icon={<QuestionOutlineIcon />}
+              />
+            </PopoverTrigger>
+            <PopoverContent
+              textAlign="center"
+              borderColor={
+                colorMode === "dark" ? "#292929 !important" : "gray.200"
+              }
+            >
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverHeader
+                borderBottom="2px solid"
                 borderColor={
                   colorMode === "dark" ? "#292929 !important" : "gray.200"
                 }
               >
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader
-                  borderBottom="2px solid"
-                  borderColor={
-                    colorMode === "dark" ? "#292929 !important" : "gray.200"
-                  }
-                >
-                  Not getting expected output?
-                </PopoverHeader>
-                <PopoverBody textAlign="start">
-                  Make sure you've entered the correct letter substitution
-                  position.
-                  <Text mt={3}>
-                    If the content is encrypted using a key, then also make sure
-                    that you've entered the right key.
-                  </Text>
-                  <Text>
-                    Note that, currently for key encryption or decryption this
-                    application only uses{" "}
-                    <Link
-                      color="purple.700"
-                      href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
+                Not getting expected output?
+              </PopoverHeader>
+              <PopoverBody textAlign="start">
+                Make sure you've entered the correct letter substitution
+                position.
+                <Text mt={3}>
+                  If the content is encrypted using a key, then also make sure
+                  that you've entered the right key.
+                </Text>
+                <Text>
+                  Note that, currently for key encryption or decryption this
+                  application only uses{" "}
+                  <Link
+                    color="purple.700"
+                    href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
+                  >
+                    <Kbd
+                      borderColor={
+                        colorMode === "dark" ? "#292929 !important" : "gray.200"
+                      }
                     >
-                      <Kbd
-                        borderColor={
-                          colorMode === "dark"
-                            ? "#292929 !important"
-                            : "gray.200"
-                        }
-                      >
-                        AES
-                      </Kbd>
-                    </Link>{" "}
-                    algorithm.
-                  </Text>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
-          </Box>
-        ) : null}
+                      AES
+                    </Kbd>
+                  </Link>{" "}
+                  algorithm.
+                </Text>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        </Box>
       </Box>
     </>
   );
