@@ -170,7 +170,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           <Input
             type="text"
             id="enc-key"
-            placeholder="leave empty if there's none"
+            placeholder="leave empty if there's none (AES)"
             width={["220px", "240px", "270px", "200px", "300px"]}
             value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
             onChange={handleKeyChange}
@@ -283,6 +283,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
               <IconButton
                 variant="outline"
                 aria-label="view key"
+                size="sm"
                 icon={showEncKey ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                 onClick={(): void => setShowEncKey(!showEncKey)}
                 borderRadius={1}

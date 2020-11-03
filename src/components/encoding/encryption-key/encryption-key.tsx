@@ -333,7 +333,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             type="text"
             id="des-key"
             placeholder={
-              isMobile ? "encryption key (optional)" : "encryption key"
+              isMobile ? "encryption key (optional)" : "encryption key (AES)"
             }
             borderColor={
               colorMode === "dark" ? "#292929 !important" : "gray.200"
