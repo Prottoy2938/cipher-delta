@@ -303,10 +303,10 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
               <Text mt={3}>
                 Learn more about{" "}
                 <Link
-                  color="purple.700"
-                  href="https://en.wikipedia.org/wiki/Substitution_cipher"
+                  color={colorMode === "dark" ? "purple.400" : "purple.700"}
+                  href="https://www.geeksforgeeks.org/difference-between-monoalphabetic-cipher-and-polyalphabetic-cipher/"
                 >
-                  substitution cipher
+                  monoalphabetic cipher
                 </Link>
               </Text>
             </PopoverBody>
