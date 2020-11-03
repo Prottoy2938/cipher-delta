@@ -301,12 +301,12 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
               <Code>b</Code> it would be replaced by the letter <Code>f</Code>{" "}
               and the pattern will continue on all letters respectively.
               <Text mt={3}>
-                Learn more about{" "}
+                This cipher method is also known as{" "}
                 <Link
                   color={colorMode === "dark" ? "purple.400" : "purple.700"}
                   href="https://www.geeksforgeeks.org/difference-between-monoalphabetic-cipher-and-polyalphabetic-cipher/"
                 >
-                  monoalphabetic cipher
+                  monoalphabetic cipher.
                 </Link>
               </Text>
             </PopoverBody>

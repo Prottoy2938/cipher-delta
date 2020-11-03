@@ -6,7 +6,7 @@
 
 Currently it supports:
 
-- substitution cipher
+- monoalphabetic cipher
 - content encryption
 
 Application link: https://cipher-delta.edrini.xyz/
