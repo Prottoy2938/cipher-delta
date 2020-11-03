@@ -101,8 +101,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     }
   };
 
-  const handleEncryptContent = (e: React.FormEvent<HTMLDivElement>): void => {
-    e.preventDefault();
+  const handleEncryptContent = (): void => {
     if (encKey.key.length) {
       toast({
         status: "info",
@@ -223,6 +222,12 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" || e.keyCode === 13) {
+      handleEncryptContent();
+    }
+  };
+
   return (
     <Box width="100%" mt={["10%", "10%", "10%", "23%"]}>
       <Box display="flex" justifyContent="center">
@@ -309,13 +314,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
         </Popover>
       </Box>
 
-      <Box
-        display="grid"
-        justifyContent="center"
-        mt={5}
-        as="form"
-        onSubmit={handleEncryptContent}
-      >
+      <Box display="grid" justifyContent="center" mt={5}>
         <InputGroup size="sm">
           {!isMobile && (
             <label htmlFor="des-key">
@@ -343,6 +342,7 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
             value={showEncKey ? encKey.key : "•".repeat(encKey.key.length)}
             onChange={handleKeyChange}
             disabled={encKey.enabled}
+            onKeyDown={handleKeyDown}
           />
           <InputRightAddon
             mr={3}
@@ -369,9 +369,9 @@ const EncryptionKey: React.FC<Props> = (props: Props) => {
                 <Button
                   borderRadius={0}
                   width="60px"
-                  type="submit"
                   fontWeight="regular"
                   mr="-px"
+                  onClick={handleEncryptContent}
                 >
                   use
                 </Button>

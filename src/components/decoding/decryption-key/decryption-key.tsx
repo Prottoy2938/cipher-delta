@@ -54,8 +54,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
     setEncKey({ ...encKey, key: e.target.value });
   };
 
-  const handleEncryptContent = (e: React.FormEvent<HTMLDivElement>): void => {
-    e.preventDefault();
+  const handleEncryptContent = (): void => {
     if (encKey.key.length) {
       toast({
         status: "info",
@@ -106,6 +105,12 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" || e.keyCode === 13) {
+      handleEncryptContent();
+    }
+  };
+
   return (
     <Box width="100%" mt={["10%", "10%", "10%", "28%"]}>
       <Box display="flex" justifyContent="center">
@@ -148,13 +153,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
           </NumberInputStepper>
         </NumberInput>
       </Box>
-      <Box
-        display="grid"
-        justifyContent="center"
-        mt={5}
-        as="form"
-        onSubmit={handleEncryptContent}
-      >
+      <Box display="grid" justifyContent="center" mt={5}>
         <InputGroup size="sm">
           <label htmlFor="enc-key">
             <InputLeftAddon
@@ -179,6 +178,7 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
             borderColor={
               colorMode === "dark" ? "#292929 !important" : "gray.200"
             }
+            onKeyDown={handleKeyDown}
           />
           <InputRightAddon
             borderColor={
@@ -204,8 +204,8 @@ const DecryptionKey: React.FC<Props> = (props: Props) => {
                   width="60px"
                   size="sm"
                   fontWeight="regular"
-                  type="submit"
                   mr="-px"
+                  onClick={handleEncryptContent}
                 >
                   apply
                 </Button>
