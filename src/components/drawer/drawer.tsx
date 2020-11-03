@@ -13,10 +13,12 @@ import {
   Box,
   Image,
   useColorMode,
+  Tooltip,
 } from "@chakra-ui/core";
 import { BsBoundingBox } from "react-icons/bs";
 import { BiKey } from "react-icons/bi";
 import { SunIcon, MoonIcon, EmailIcon } from "@chakra-ui/icons";
+import { ImNewspaper } from "react-icons/im";
 
 //generate random string
 const genRan = (length: number): string => {
@@ -101,16 +103,31 @@ const DashboardDrawer: React.FC = () => {
             >
               Appearance
             </Button>
-            <a href="mailto:svesp@protonmail.com">
+            <a href="https://blog.edrini.xyz/posts/cipher-delta">
               <Button
-                leftIcon={<EmailIcon />}
+                leftIcon={<ImNewspaper />}
                 justifyContent="space-around"
                 width="100%"
                 mb={6}
               >
-                Send Feedback
+                How its build
               </Button>
             </a>
+            <Tooltip
+              label="svesp@protonmail.com"
+              aria-label="contact email: svesp@protonmail.com"
+            >
+              <a href="mailto:svesp@protonmail.com">
+                <Button
+                  leftIcon={<EmailIcon />}
+                  justifyContent="space-around"
+                  width="100%"
+                  mb={6}
+                >
+                  Send Feedback
+                </Button>
+              </a>
+            </Tooltip>
           </DrawerBody>
           <DrawerFooter>
             <Box>
