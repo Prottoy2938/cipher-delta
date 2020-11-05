@@ -13,4 +13,4 @@ Application link: https://cipher-delta.edrini.xyz/
 
 View Source: https://github.com/Prottoy2938/substitution-cipher
 
-View Blog: https://blog.edrini.xyz/posts/cipher-delta
+How its built: https://blog.edrini.xyz/posts/cipher-delta
