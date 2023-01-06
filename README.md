@@ -2,7 +2,7 @@
 
 **A web application that helps encode and decode plain content.**
 
-![Application Preview](https://cipher-delta.edrini.xyz/webapp-preview.jpg)
+![Application Preview](https://cipher-delta.vercel.app/webapp-preview.jpg)
 
 Currently it supports:
 
